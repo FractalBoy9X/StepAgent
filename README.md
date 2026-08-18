@@ -1,4 +1,4 @@
-# StepAgent v4
+# StepAgent
 
 Local observability for Codex sessions. The importer preserves every rollout record, aggregates lifecycle events into semantic interactions, reconstructs explicit and inferred relationships, and presents the parser output in two native 2D views.
 
