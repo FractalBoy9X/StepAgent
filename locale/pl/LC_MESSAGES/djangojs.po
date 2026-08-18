@@ -1,0 +1,1132 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: StepAgent v4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-18 08:52-0500\n"
+"PO-Revision-Date: 2026-08-10 00:00+0200\n"
+"Last-Translator: StepAgent\n"
+"Language-Team: Polish\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Lifecycle"
+msgstr "Cykl życia"
+
+msgid "Exit code"
+msgstr "Kod wyjścia"
+
+#, javascript-format
+msgid "exit code %s"
+msgstr "kod wyjścia %s"
+
+msgid "Error output"
+msgstr "Wyjście błędów"
+
+msgid "Duration"
+msgstr "Czas trwania"
+
+msgid "Started"
+msgstr "Rozpoczęto"
+
+msgid "Finished"
+msgstr "Koniec"
+
+msgid "Call identifier"
+msgstr "Identyfikator wywołania"
+
+#, javascript-format
+msgid "reads %s"
+msgstr "czyta %s"
+
+#, javascript-format
+msgid "lists %s"
+msgstr "listuje %s"
+
+#, javascript-format
+msgid "searches for %s in %s"
+msgstr "szuka „%s” w %s"
+
+#, javascript-format
+msgid "searches for %s"
+msgstr "szuka „%s”"
+
+msgid "context envelope"
+msgstr "koperta kontekstu"
+
+msgid "From"
+msgstr "Nadawca"
+
+msgid "You"
+msgstr "Ty"
+
+msgid "Agent"
+msgstr "Agent"
+
+msgid "System"
+msgstr "System"
+
+msgid "Phase"
+msgstr "Faza"
+
+msgid "final answer"
+msgstr "odpowiedź końcowa"
+
+msgid "interim commentary"
+msgstr "komentarz w trakcie"
+
+msgid "Message kind"
+msgstr "Rodzaj wiadomości"
+
+#, javascript-format
+msgid "system message (%s)"
+msgstr "wiadomość systemowa (%s)"
+
+msgid "Message"
+msgstr "Wiadomość"
+
+msgid "Images"
+msgstr "Obrazy"
+
+msgid "Reasoning kind"
+msgstr "Rodzaj rozumowania"
+
+msgid "summary"
+msgstr "podsumowanie"
+
+msgid "raw thinking"
+msgstr "surowe myślenie"
+
+msgid "section break"
+msgstr "przerwa sekcji"
+
+msgid "Summary"
+msgstr "Podsumowanie"
+
+msgid "Raw thinking"
+msgstr "Surowe myślenie"
+
+msgid "Encrypted content"
+msgstr "Treść zaszyfrowana"
+
+msgid "model kept this thinking encrypted"
+msgstr "model zaszyfrował to rozumowanie"
+
+msgid "Command"
+msgstr "Polecenie"
+
+msgid "Working directory"
+msgstr "Katalog roboczy"
+
+msgid "What the command does"
+msgstr "Co robi ta komenda"
+
+msgid "Started by"
+msgstr "Uruchomione przez"
+
+msgid "agent"
+msgstr "agent"
+
+msgid "your shell"
+msgstr "Twoja powłoka"
+
+msgid "agent (new process)"
+msgstr "agent (nowy proces)"
+
+msgid "agent (running process)"
+msgstr "agent (działający proces)"
+
+msgid "Process"
+msgstr "Proces"
+
+msgid "Timeout"
+msgstr "Limit czasu"
+
+msgid "Sent to the running process"
+msgstr "Wysłane do działającego procesu"
+
+msgid "Output"
+msgstr "Wyjście"
+
+msgid "Changed files"
+msgstr "Zmienione pliki"
+
+#, javascript-format
+msgid "%s file(s)"
+msgstr "plików: %s"
+
+msgid "Files"
+msgstr "Pliki"
+
+msgid "Approval"
+msgstr "Zatwierdzenie"
+
+msgid "auto-approved"
+msgstr "zatwierdzone automatycznie"
+
+msgid "approved by you"
+msgstr "zatwierdzone przez Ciebie"
+
+msgid "Result"
+msgstr "Wynik"
+
+msgid "Tool"
+msgstr "Narzędzie"
+
+msgid "Arguments"
+msgstr "Argumenty"
+
+msgid "MCP server"
+msgstr "Serwer MCP"
+
+msgid "Application"
+msgstr "Aplikacja"
+
+msgid "Access"
+msgstr "Dostęp"
+
+msgid "read-only tool"
+msgstr "narzędzie tylko do odczytu"
+
+msgid "tool can modify state"
+msgstr "narzędzie może zmieniać stan"
+
+msgid "Error"
+msgstr "Błąd"
+
+msgid "Outcome"
+msgstr "Rezultat"
+
+msgid "the tool reported an error"
+msgstr "narzędzie zgłosiło błąd"
+
+msgid "the tool reported success"
+msgstr "narzędzie zgłosiło sukces"
+
+msgid "Action"
+msgstr "Akcja"
+
+msgid "web search"
+msgstr "wyszukiwanie w sieci"
+
+msgid "opened a page"
+msgstr "otwarcie strony"
+
+msgid "searched inside a page"
+msgstr "szukanie na stronie"
+
+msgid "Query"
+msgstr "Zapytanie"
+
+msgid "Address"
+msgstr "Adres"
+
+msgid "Results"
+msgstr "Wyniki"
+
+msgid "Plan"
+msgstr "Plan"
+
+msgid "Steps"
+msgstr "Kroki"
+
+msgid "Why"
+msgstr "Dlaczego"
+
+msgid "Model"
+msgstr "Model"
+
+msgid "Effort"
+msgstr "Poziom wysiłku"
+
+msgid "Personality"
+msgstr "Osobowość"
+
+msgid "Provider"
+msgstr "Dostawca"
+
+msgid "Service tier"
+msgstr "Poziom usługi"
+
+msgid "Collaboration mode"
+msgstr "Tryb współpracy"
+
+msgid "Multi-agent version"
+msgstr "Wersja multi-agent"
+
+msgid "Workspace roots"
+msgstr "Katalogi projektu"
+
+msgid "Approval policy"
+msgstr "Polityka zatwierdzeń"
+
+msgid "Approvals reviewed by"
+msgstr "Zgody rozpatruje"
+
+msgid "Sandbox"
+msgstr "Sandbox"
+
+msgid "Writable roots"
+msgstr "Katalogi zapisywalne"
+
+msgid "Network access"
+msgstr "Dostęp do sieci"
+
+msgid "yes"
+msgstr "tak"
+
+msgid "no"
+msgstr "nie"
+
+msgid "Permission profile"
+msgstr "Profil uprawnień"
+
+msgid "File permissions"
+msgstr "Uprawnienia do plików"
+
+msgid "Output truncation"
+msgstr "Przycinanie wyjścia"
+
+msgid "Session date"
+msgstr "Data sesji"
+
+msgid "Time zone"
+msgstr "Strefa czasowa"
+
+msgid "Realtime mode"
+msgstr "Tryb czasu rzeczywistego"
+
+msgid "Project instructions"
+msgstr "Instrukcje projektu"
+
+msgid "Tokens in this request"
+msgstr "Tokeny w tym żądaniu"
+
+msgid "Session total tokens"
+msgstr "Tokeny łącznie w sesji"
+
+msgid "Context window"
+msgstr "Okno kontekstu"
+
+msgid "used"
+msgstr "zajęte"
+
+msgid "Rate limit (primary)"
+msgstr "Limit tempa (główny)"
+
+msgid "Rate limit (secondary)"
+msgstr "Limit tempa (dodatkowy)"
+
+msgid "Credits"
+msgstr "Kredyty"
+
+msgid "unlimited"
+msgstr "bez limitu"
+
+msgid "available"
+msgstr "dostępne"
+
+msgid "none"
+msgstr "brak"
+
+msgid "Limit"
+msgstr "Limit"
+
+#, javascript-format
+msgid "%s h window"
+msgstr "okno %s h"
+
+#, javascript-format
+msgid "%s min window"
+msgstr "okno %s min"
+
+#, javascript-format
+msgid "resets in %s min"
+msgstr "odnowi się za %s min"
+
+msgid "Diff of the whole turn"
+msgstr "Zmiany całej tury"
+
+msgid "What this is"
+msgstr "Co to jest"
+
+msgid "tool result with no matching call in the log"
+msgstr "wynik narzędzia bez dopasowanego wywołania w logu"
+
+msgid "Tools"
+msgstr "Narzędzia"
+
+msgid "Conversation name"
+msgstr "Nazwa rozmowy"
+
+msgid "Conversation"
+msgstr "Rozmowa"
+
+msgid "Goal"
+msgstr "Cel"
+
+msgid "Snapshot"
+msgstr "Migawka"
+
+msgid "full snapshot"
+msgstr "pełna migawka"
+
+msgid "difference from the previous state"
+msgstr "różnica względem poprzedniego stanu"
+
+msgid "Filesystem"
+msgstr "System plików"
+
+msgid "Approved command prefixes"
+msgstr "Zatwierdzone przedrostki komend"
+
+msgid "Skills"
+msgstr "Umiejętności"
+
+msgid "Snapshot commit"
+msgstr "Commit migawki"
+
+msgid "Untracked files"
+msgstr "Pliki nieśledzone"
+
+msgid "Summary that replaced the history"
+msgstr "Streszczenie, które zastąpiło historię"
+
+msgid "Replaced messages"
+msgstr "Zastąpione wiadomości"
+
+#, javascript-format
+msgid "%s message(s) replaced"
+msgstr "zastąpiono wiadomości: %s"
+
+#, javascript-format
+msgid "window %s"
+msgstr "okno %s"
+
+msgid "Window identifier"
+msgstr "Identyfikator okna"
+
+msgid "Review mode"
+msgstr "Tryb przeglądu"
+
+msgid "entered review mode"
+msgstr "wejście w tryb przeglądu"
+
+msgid "left review mode"
+msgstr "wyjście z trybu przeglądu"
+
+msgid "Reviewing"
+msgstr "Przegląda"
+
+msgid "Description"
+msgstr "Opis"
+
+msgid "Findings"
+msgstr "Ustalenia"
+
+msgid "Waiting for"
+msgstr "Czeka na"
+
+msgid "approval of file changes"
+msgstr "zgodę na zmiany w plikach"
+
+msgid "approval to run a command"
+msgstr "zgodę na uruchomienie komendy"
+
+msgid "Why the agent asks"
+msgstr "Dlaczego agent pyta"
+
+msgid "Requested write access to"
+msgstr "Prosi o prawo zapisu w"
+
+msgid "Decision"
+msgstr "Decyzja"
+
+msgid "Requested permissions"
+msgstr "Żądane uprawnienia"
+
+msgid "Questions"
+msgstr "Pytania"
+
+msgid "Blocking"
+msgstr "Blokowanie"
+
+msgid "the agent is waiting for you"
+msgstr "agent czeka na Ciebie"
+
+msgid "the agent continues meanwhile"
+msgstr "agent pracuje dalej"
+
+msgid "Auto-resolves after"
+msgstr "Rozstrzygnie się samo po"
+
+msgid "Error code"
+msgstr "Kod błędu"
+
+msgid "HTTP status"
+msgstr "Status HTTP"
+
+msgid "Details"
+msgstr "Szczegóły"
+
+msgid "Retry"
+msgstr "Ponowienie"
+
+msgid "Codex will retry"
+msgstr "Codex ponowi próbę"
+
+msgid "Codex will not retry"
+msgstr "Codex nie ponowi próby"
+
+msgid "Hook event"
+msgstr "Zdarzenie hooka"
+
+msgid "Hook"
+msgstr "Hook"
+
+msgid "Risk level"
+msgstr "Poziom ryzyka"
+
+msgid "Assessed action"
+msgstr "Oceniana czynność"
+
+msgid "Reasons"
+msgstr "Powody"
+
+msgid "From model"
+msgstr "Z modelu"
+
+msgid "To model"
+msgstr "Na model"
+
+msgid "Reason"
+msgstr "Powód"
+
+msgid "Verifications"
+msgstr "Weryfikacje"
+
+msgid "Prompt"
+msgstr "Polecenie"
+
+msgid "Image"
+msgstr "Obraz"
+
+msgid "Saved to"
+msgstr "Zapisano w"
+
+msgid "Failure"
+msgstr "Niepowodzenie"
+
+msgid "Event"
+msgstr "Zdarzenie"
+
+msgid "turn started"
+msgstr "start tury"
+
+msgid "turn finished"
+msgstr "koniec tury"
+
+msgid "turn aborted"
+msgstr "tura przerwana"
+
+msgid "session closed"
+msgstr "koniec sesji"
+
+msgid "session header"
+msgstr "metryczka sesji"
+
+msgid "interrupted by you"
+msgstr "przerwane przez Ciebie"
+
+msgid "replaced by a newer turn"
+msgstr "zastąpione nowszą turą"
+
+msgid "review mode ended"
+msgstr "koniec trybu przeglądu"
+
+msgid "budget limit reached"
+msgstr "osiągnięto limit budżetu"
+
+msgid "Session"
+msgstr "Sesja"
+
+msgid "Started from"
+msgstr "Uruchomione z"
+
+msgid "Codex version"
+msgstr "Wersja Codexa"
+
+msgid "Git"
+msgstr "Git"
+
+msgid "Base model instructions"
+msgstr "Bazowe instrukcje modelu"
+
+msgid "Final message of the turn"
+msgstr "Ostatnia wiadomość tury"
+
+msgid "Time to first token"
+msgstr "Czas do pierwszego tokenu"
+
+msgid "Source turn"
+msgstr "Tura źródłowa"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Record"
+msgstr "Rekord"
+
+msgid "Content"
+msgstr "Treść"
+
+#, javascript-format
+msgid "Preview truncated — showing %s of %s characters."
+msgstr "Podgląd skrócony — pokazano %s z %s znaków."
+
+msgid "Show full content"
+msgstr "Pokaż całość"
+
+msgid "File"
+msgstr "Plik"
+
+msgid "Operation"
+msgstr "Operacja"
+
+msgid "added"
+msgstr "dodany"
+
+msgid "updated"
+msgstr "zmieniony"
+
+msgid "deleted"
+msgstr "usunięty"
+
+msgid "moved"
+msgstr "przeniesiony"
+
+msgid "Diff"
+msgstr "Diff"
+
+#, javascript-format
+msgid "%s characters, %s lines"
+msgstr "%s znaków, %s linii"
+
+msgid "Input"
+msgstr "Wejście"
+
+msgid "Cached"
+msgstr "Z cache"
+
+msgid "Cache write"
+msgstr "Zapis do pamięci podręcznej"
+
+msgid "Reasoning"
+msgstr "Rozumowanie"
+
+msgid "Total"
+msgstr "Łącznie"
+
+#, javascript-format
+msgid "Showing first %s of %s results."
+msgstr "Pokazano pierwsze %s z %s wyników."
+
+msgid "Image attached to this step"
+msgstr "Obraz dołączony do tego kroku"
+
+#, javascript-format
+msgid "Embedded image, %s characters"
+msgstr "Obraz osadzony, %s znaków"
+
+msgid "What"
+msgstr "Co"
+
+msgid "Where"
+msgstr "Gdzie"
+
+msgid "Timing"
+msgstr "Czas"
+
+msgid "Provenance"
+msgstr "Pochodzenie"
+
+msgid "empty"
+msgstr "puste"
+
+msgid "unreadable"
+msgstr "nieczytelne"
+
+msgid "not in the log"
+msgstr "brak w logu"
+
+msgid "The field is present in the log but has no value."
+msgstr "Pole jest w logu, ale nie ma wartości."
+
+msgid "The value could not be decoded — see the Source records layer below."
+msgstr "Nie udało się odczytać tej wartości — zajrzyj do warstwy Rekordy źródłowe poniżej."
+
+msgid "Codex did not record this field for this step."
+msgstr "Codex nie zapisał tego pola dla tego kroku."
+
+msgid "Calculated by the view from the data below."
+msgstr "Wyliczone przez widok z danych poniżej."
+
+#, javascript-format
+msgid "Source: %s"
+msgstr "Źródło: %s"
+
+#, javascript-format
+msgid "%s of %s fields"
+msgstr "%s z %s pól"
+
+msgid "Not filled:"
+msgstr "Nieuzupełnione:"
+
+msgid "Every field defined for this step type was found."
+msgstr "Znaleziono wszystkie pola zdefiniowane dla tego typu kroku."
+
+#, javascript-format
+msgid "%s field not shown above"
+msgid_plural "%s fields not shown above"
+msgstr[0] "%s pole nie zmieściło się powyżej"
+msgstr[1] "%s pola nie zmieściły się powyżej"
+msgstr[2] "%s pól nie zmieściło się powyżej"
+msgstr[3] "%s pola nie zmieściło się powyżej"
+
+msgid "These keys exist in the source records but have no place in this view yet. The full data is in the layers below."
+msgstr "Te klucze są w rekordach źródłowych, ale nie mają jeszcze miejsca w tym widoku. Pełne dane są w warstwach poniżej."
+
+msgid "Source record"
+msgstr "Rekord źródłowy"
+
+msgid "Generic view — this step type has no dedicated layout yet."
+msgstr "Widok ogólny — ten typ kroku nie ma jeszcze własnego układu."
+
+msgid "The complete data is in the Normalized interaction and Source records layers below."
+msgstr "Komplet danych jest w warstwach Znormalizowana interakcja i Rekordy źródłowe poniżej."
+
+msgid "Communication"
+msgstr "Komunikacja"
+
+msgid "Planning"
+msgstr "Planowanie"
+
+msgid "Execution"
+msgstr "Wykonanie"
+
+msgid "Web"
+msgstr "Sieć"
+
+msgid "MCP"
+msgstr "MCP"
+
+msgid "Media"
+msgstr "Media"
+
+msgid "Agents"
+msgstr "Agenci"
+
+msgid "Human control"
+msgstr "Kontrola człowieka"
+
+msgid "Safety"
+msgstr "Bezpieczeństwo"
+
+msgid "Context"
+msgstr "Kontekst"
+
+msgid "Turn"
+msgstr "Tura"
+
+msgid "Plan step"
+msgstr "Krok planu"
+
+msgid "Terminal I/O"
+msgstr "Wejście/wyjście terminala"
+
+msgid "Tool call"
+msgstr "Wywołanie narzędzia"
+
+msgid "Tool result"
+msgstr "Wynik narzędzia"
+
+msgid "Tool search"
+msgstr "Wyszukiwanie narzędzia"
+
+msgid "MCP call"
+msgstr "Wywołanie MCP"
+
+msgid "Web action"
+msgstr "Akcja sieciowa"
+
+msgid "File change"
+msgstr "Zmiana pliku"
+
+msgid "Artifact"
+msgstr "Artefakt"
+
+msgid "Image generation"
+msgstr "Generowanie obrazu"
+
+msgid "Image view"
+msgstr "Podgląd obrazu"
+
+msgid "Media stream"
+msgstr "Strumień multimediów"
+
+msgid "Permission request"
+msgstr "Żądanie uprawnienia"
+
+msgid "User input request"
+msgstr "Żądanie danych od użytkownika"
+
+msgid "Review"
+msgstr "Przegląd"
+
+msgid "Compaction"
+msgstr "Kompakcja"
+
+msgid "World state"
+msgstr "Stan świata"
+
+msgid "Model event"
+msgstr "Zdarzenie modelu"
+
+msgid "Environment"
+msgstr "Środowisko"
+
+msgid "Usage"
+msgstr "Użycie"
+
+msgid "Warning"
+msgstr "Ostrzeżenie"
+
+msgid "Unknown event"
+msgstr "Nieznane zdarzenie"
+
+msgid "Pending"
+msgstr "Oczekuje"
+
+msgid "Streaming"
+msgstr "Przesyłanie"
+
+msgid "Waiting"
+msgstr "Oczekiwanie"
+
+msgid "Blocked"
+msgstr "Zablokowano"
+
+msgid "Completed"
+msgstr "Zakończono"
+
+msgid "Failed"
+msgstr "Niepowodzenie"
+
+msgid "Cancelled"
+msgstr "Anulowano"
+
+msgid "Aborted"
+msgstr "Przerwano"
+
+msgid "Unknown"
+msgstr "Nieznany"
+
+msgid "Success"
+msgstr "Sukces"
+
+msgid "contains"
+msgstr "zawiera"
+
+msgid "produced"
+msgstr "wytworzył"
+
+msgid "next"
+msgstr "następny"
+
+msgid "triggered"
+msgstr "wyzwolił"
+
+msgid "invokes"
+msgstr "wywołuje"
+
+msgid "returns"
+msgstr "zwraca"
+
+msgid "failed with"
+msgstr "nie powiódł się z"
+
+msgid "retries"
+msgstr "ponawia"
+
+msgid "reads"
+msgstr "odczytuje"
+
+msgid "creates"
+msgstr "tworzy"
+
+msgid "writes"
+msgstr "zapisuje"
+
+msgid "patches"
+msgstr "modyfikuje"
+
+msgid "deletes"
+msgstr "usuwa"
+
+msgid "copies"
+msgstr "kopiuje"
+
+msgid "moves"
+msgstr "przenosi"
+
+msgid "references"
+msgstr "odwołuje się do"
+
+msgid "executes"
+msgstr "wykonuje"
+
+msgid "observes"
+msgstr "obserwuje"
+
+msgid "spawns"
+msgstr "uruchamia"
+
+msgid "sends to"
+msgstr "wysyła do"
+
+msgid "waits for"
+msgstr "czeka na"
+
+msgid "resumes"
+msgstr "wznawia"
+
+msgid "closes"
+msgstr "zamyka"
+
+msgid "requests approval"
+msgstr "żąda zatwierdzenia"
+
+msgid "approves"
+msgstr "zatwierdza"
+
+msgid "declines"
+msgstr "odrzuca"
+
+msgid "requests input"
+msgstr "żąda danych"
+
+msgid "responds to"
+msgstr "odpowiada na"
+
+msgid "blocks"
+msgstr "blokuje"
+
+msgid "requests permission"
+msgstr "żąda uprawnienia"
+
+msgid "grants permission"
+msgstr "przyznaje uprawnienie"
+
+msgid "searches"
+msgstr "wyszukuje"
+
+msgid "opens"
+msgstr "otwiera"
+
+msgid "finds in"
+msgstr "znajduje w"
+
+msgid "connects to"
+msgstr "łączy się z"
+
+msgid "generates"
+msgstr "generuje"
+
+msgid "compacts"
+msgstr "kompaktuje"
+
+msgid "updates state"
+msgstr "aktualizuje stan"
+
+msgid "enters mode"
+msgstr "wchodzi w tryb"
+
+msgid "exits mode"
+msgstr "wychodzi z trybu"
+
+msgid "triggers hook"
+msgstr "wyzwala hook"
+
+msgid "blocked by"
+msgstr "zablokowany przez"
+
+msgid "rerouted to"
+msgstr "przekierowany do"
+
+msgid "derived from"
+msgstr "pochodzi z"
+
+msgid "implements step"
+msgstr "realizuje krok"
+
+#, javascript-format
+msgid "%s step"
+msgid_plural "%s steps"
+msgstr[0] "%s krok"
+msgstr[1] "%s kroki"
+msgstr[2] "%s kroków"
+msgstr[3] "%s kroku"
+
+#, javascript-format
+msgid "%s error"
+msgid_plural "%s errors"
+msgstr[0] "%s błąd"
+msgstr[1] "%s błędy"
+msgstr[2] "%s błędów"
+msgstr[3] "%s błędu"
+
+#, javascript-format
+msgid "%s interaction"
+msgid_plural "%s interactions"
+msgstr[0] "%s interakcja"
+msgstr[1] "%s interakcje"
+msgstr[2] "%s interakcji"
+msgstr[3] "%s interakcji"
+
+#, javascript-format
+msgid "Turn %s"
+msgstr "Tura %s"
+
+msgid "Session initialization"
+msgstr "Inicjalizacja sesji"
+
+msgid "Init"
+msgstr "Inicj."
+
+msgid "No interaction selected."
+msgstr "Nie wybrano interakcji."
+
+msgid "Click a step, a table row, or a matrix cell — its details will appear here."
+msgstr "Kliknij krok, wiersz tabeli lub komórkę macierzy — tutaj pojawią się jego szczegóły."
+
+msgid "Family"
+msgstr "Rodzina"
+
+msgid "Subkind"
+msgstr "Podtyp"
+
+msgid "Conversation turn"
+msgstr "Tura konwersacyjna"
+
+msgid "Timestamp"
+msgstr "Znacznik czasu"
+
+msgid "Role"
+msgstr "Rola"
+
+msgid "Copy JSON"
+msgstr "Kopiuj JSON"
+
+msgid "Copied"
+msgstr "Skopiowano"
+
+msgid "Copy failed"
+msgstr "Kopiowanie nie powiodło się"
+
+msgid "This step has no text content."
+msgstr "Ten krok nie ma treści tekstowej."
+
+msgid "Resources"
+msgstr "Zasoby"
+
+msgid "Normalized interaction"
+msgstr "Znormalizowana interakcja"
+
+msgid "What the parser derived from the source records below. Fields already listed above are omitted here."
+msgstr "To, co parser wyprowadził z rekordów źródłowych poniżej. Pola wypisane już wyżej są tu pominięte."
+
+msgid "Full JSON"
+msgstr "Pełny JSON"
+
+#, javascript-format
+msgid "Source records (%s log line)"
+msgid_plural "Source records (%s log lines)"
+msgstr[0] "Rekordy źródłowe (%s linia logu)"
+msgstr[1] "Rekordy źródłowe (%s linie logu)"
+msgstr[2] "Rekordy źródłowe (%s linii logu)"
+msgstr[3] "Rekordy źródłowe (%s linii logu)"
+
+msgid "The exact lines from the JSONL log file this step was built from."
+msgstr "Dokładne linie pliku logu JSONL, z których zbudowano ten krok."
+
+msgid "Relations"
+msgstr "Powiązania"
+
+#, javascript-format
+msgid "Step %s · index %s"
+msgstr "Krok %s · indeks %s"
+
+msgid "Show in Turn Lanes"
+msgstr "Pokaż w Pasach tur"
+
+msgid "Loading raw records…"
+msgstr "Wczytywanie surowych rekordów…"
+
+#, javascript-format
+msgid "Raw records unavailable: %s"
+msgstr "Rekordy surowe są niedostępne: %s"
+
+msgid "Not present in this scope"
+msgstr "Nie występuje w tym zakresie"
+
+msgid "Collapse"
+msgstr "Zwiń"
+
+#, javascript-format
+msgid "Expand (%s characters)"
+msgstr "Rozwiń (%s znaków)"
+
+msgid "No user message in this turn."
+msgstr "Brak wiadomości użytkownika w tej turze."
+
+msgid "Message truncated in this view."
+msgstr "Wiadomość skrócona w tym widoku."
+
+msgid "Open the full message"
+msgstr "Otwórz pełną wiadomość"
+
+#, javascript-format
+msgid "Step %s: %s. %s."
+msgstr "Krok %s: %s. %s."
+
+msgid "steps"
+msgstr "kroki"
+
+msgid "step"
+msgid_plural "steps"
+msgstr[0] "krok"
+msgstr[1] "kroki"
+msgstr[2] "kroków"
+msgstr[3] "kroku"
+
+msgid "error"
+msgid_plural "errors"
+msgstr[0] "błąd"
+msgstr[1] "błędy"
+msgstr[2] "błędów"
+msgstr[3] "błędu"
+
+msgid "No interactions match the current filters."
+msgstr "Żadna interakcja nie pasuje do bieżących filtrów."
+
+#, javascript-format
+msgid "Showing first %s of %s interactions."
+msgstr "Pokazano pierwsze %s z %s interakcji."
+
+#~ msgid "Rate limit"
+#~ msgstr "Limit zużycia"

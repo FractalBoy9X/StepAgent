@@ -1,0 +1,713 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: StepAgent v4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-18 08:51-0500\n"
+"PO-Revision-Date: 2026-08-10 00:00+0200\n"
+"Last-Translator: StepAgent\n"
+"Language-Team: Polish\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+msgid "Home"
+msgstr "Strona główna"
+
+msgid "Observatory"
+msgstr "Obserwatorium"
+
+msgid "Import logs"
+msgstr "Import logów"
+
+msgid "Instructions"
+msgstr "Instrukcje"
+
+msgid "Language"
+msgstr "Język"
+
+msgid "Session timeline - StepAgent"
+msgstr "Oś czasu sesji - StepAgent"
+
+msgid "Session"
+msgstr "Sesja"
+
+msgid "Latest session"
+msgstr "Najnowsza sesja"
+
+msgid "Load"
+msgstr "Wczytaj"
+
+msgid "Help"
+msgstr "Pomoc"
+
+msgid "This page replays one imported Codex session: every interaction from its log becomes a numbered step, in the exact order it happened."
+msgstr "Ta strona odtwarza jedną zaimportowaną sesję Codexa: każda interakcja z jej logu staje się ponumerowanym krokiem, dokładnie w kolejności, w jakiej się wydarzyła."
+
+msgid "Learn more"
+msgstr "Dowiedz się więcej"
+
+msgid "Selection"
+msgstr "Wybór"
+
+msgid "Details of the selected step in three layers: its readable content, the normalized interaction the parser derived, and the exact raw log lines it was built from. Press Escape to clear the selection."
+msgstr "Szczegóły zaznaczonego kroku w trzech warstwach: czytelna treść, znormalizowana interakcja wyprowadzona przez parser oraz dokładne surowe linie logu, z których powstał. Naciśnij Escape, aby wyczyścić zaznaczenie."
+
+msgid "No interaction selected."
+msgstr "Nie wybrano interakcji."
+
+msgid "Click a step, a table row, or a matrix cell — its details will appear here."
+msgstr "Kliknij krok, wiersz tabeli lub komórkę macierzy — tutaj pojawią się jego szczegóły."
+
+msgid "Visualization type"
+msgstr "Typ wizualizacji"
+
+msgid "Turn Lanes"
+msgstr "Pasy tur"
+
+msgid "step-by-step"
+msgstr "krok po kroku"
+
+msgid "Activity Matrix"
+msgstr "Macierz aktywności"
+
+msgid "density by turn"
+msgstr "gęstość według tur"
+
+msgid "Scope"
+msgstr "Zakres"
+
+msgid "Entire session"
+msgstr "Cała sesja"
+
+msgid "Spacing"
+msgstr "Odstępy"
+
+msgid "Step spacing"
+msgstr "Odstępy między krokami"
+
+msgid "Compact"
+msgstr "Kompaktowy"
+
+msgid "Standard"
+msgstr "Standardowy"
+
+msgid "Detailed"
+msgstr "Szczegółowy"
+
+msgid "steps"
+msgstr "kroków"
+
+msgid "errors"
+msgstr "błędów"
+
+msgid "Turn Lanes shows one horizontal lane per conversation turn, step by step. Activity Matrix shows how much each interaction family did in each turn. Scope narrows both views to a single turn; Spacing changes step size."
+msgstr "Pasy tur pokazują jeden poziomy pas na każdą turę rozmowy, krok po kroku. Macierz aktywności pokazuje, ile każda rodzina interakcji zdziałała w każdej turze. Zakres zawęża oba widoki do jednej tury; Odstępy zmieniają rozmiar kroków."
+
+msgid "No interactions in this scope."
+msgstr "Brak interakcji w wybranym zakresie."
+
+msgid "Session health"
+msgstr "Stan sesji"
+
+msgid "Totals for the whole session: normalized interactions, raw log lines they came from, conversation turns, errors, detected retries, and tokens used."
+msgstr "Sumy dla całej sesji: znormalizowane interakcje, surowe linie logu, z których powstały, tury rozmowy, błędy, wykryte ponowienia i zużyte tokeny."
+
+msgid "Interactions"
+msgstr "Interakcje"
+
+msgid "Raw records"
+msgstr "Rekordy surowe"
+
+msgid "Conversation turns"
+msgstr "Tury konwersacyjne"
+
+msgid "Errors"
+msgstr "Błędy"
+
+msgid "Retries"
+msgstr "Ponowienia"
+
+msgid "Tokens"
+msgstr "Tokeny"
+
+msgid "Interaction explorer"
+msgstr "Eksplorator interakcji"
+
+msgid "Search and filter every step of the session by family, type, status, or lifecycle. Click a row to select that step in the chart."
+msgstr "Przeszukuj i filtruj każdy krok sesji po rodzinie, typie, statusie lub cyklu życia. Kliknij wiersz, aby zaznaczyć ten krok na wykresie."
+
+msgid "Search interactions"
+msgstr "Szukaj interakcji"
+
+msgid "All families"
+msgstr "Wszystkie rodziny"
+
+msgid "All types"
+msgstr "Wszystkie typy"
+
+msgid "All statuses"
+msgstr "Wszystkie statusy"
+
+msgid "All lifecycle states"
+msgstr "Wszystkie stany cyklu życia"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Label"
+msgstr "Etykieta"
+
+msgid "Sessions - StepAgent"
+msgstr "Sesje - StepAgent"
+
+msgid "Agent runtime observability"
+msgstr "Obserwowalność działania agenta"
+
+msgid "The application preserves Codex rollout records, aggregates interaction lifecycles, and reconstructs an explicit execution graph."
+msgstr "Aplikacja zachowuje rekordy sesji Codex, agreguje cykle życia interakcji i odtwarza jawny graf wykonania."
+
+msgid "Created"
+msgstr "Utworzono"
+
+msgid "Size"
+msgstr "Rozmiar"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Open"
+msgstr "Otwórz"
+
+msgid "No imported sessions yet. Open <a href=\"/logs/\">Import logs</a>."
+msgstr "Nie zaimportowano jeszcze żadnych sesji. Otwórz <a href=\"/logs/\">Import logów</a>."
+
+msgid "Session timelines"
+msgstr "Osie czasu sesji"
+
+msgid "Turn Lanes preserve every parser interaction in step order. Activity Matrix compares family activity across turns without stacking markers."
+msgstr "Pasy tur zachowują każdą interakcję parsera w kolejności kroków. Macierz aktywności porównuje rodziny aktywności między turami bez nakładania znaczników."
+
+msgid "Instructions - StepAgent"
+msgstr "Instrukcje - StepAgent"
+
+msgid "2D observatory reference"
+msgstr "Opis obserwatorium 2D"
+
+msgid "How the observatory turns raw Codex session logs into the two views, and what every label on screen means."
+msgstr "Jak obserwatorium zamienia surowe logi sesji Codexa w dwa widoki i co znaczy każda etykieta na ekranie."
+
+msgid "How to read the views"
+msgstr "Jak czytać widoki"
+
+msgid "The observatory is linear on purpose: interactions appear exactly in the order the parser found them in the log, numbered as steps. Nothing is reordered, merged away, or hidden — what you see is the session as it happened."
+msgstr "Obserwatorium jest celowo liniowe: interakcje pojawiają się dokładnie w kolejności, w jakiej parser znalazł je w logu, ponumerowane jako kroki. Nic nie jest przestawiane, sklejane ani ukrywane — widzisz sesję taką, jaka się wydarzyła."
+
+msgid "Parser interaction index"
+msgstr "Indeks interakcji parsera"
+
+msgid "Session matrix"
+msgstr "Macierz sesji"
+
+msgid "Conversation turn"
+msgstr "Tura konwersacyjna"
+
+msgid "Turn matrix"
+msgstr "Macierz tury"
+
+msgid "Consecutive step ranges"
+msgstr "Kolejne zakresy kroków"
+
+msgid "Both views use the same selected interaction and detail API."
+msgstr "Oba widoki korzystają z tej samej wybranej interakcji i API szczegółów."
+
+msgid "The two views"
+msgstr "Dwa widoki"
+
+msgid "Each parser interaction is one numbered step. A conversation turn starts with a standalone user message. Earlier events form a separate session initialization lane."
+msgstr "Każda interakcja parsera jest jednym numerowanym krokiem. Turę konwersacyjną rozpoczyna samodzielna wiadomość użytkownika. Wcześniejsze zdarzenia tworzą osobny pas inicjalizacji sesji."
+
+msgid "Rows represent interaction families. Columns represent conversation turns and session initialization; after selecting one segment they represent consecutive step ranges."
+msgstr "Wiersze reprezentują rodziny interakcji. Kolumny reprezentują tury konwersacyjne i inicjalizację sesji, a po wybraniu jednego segmentu kolejne zakresy kroków."
+
+msgid "Interaction families"
+msgstr "Rodziny interakcji"
+
+msgid "Every interaction belongs to one of 14 thematic families. The color of a step marker, matrix row, and legend entry always identifies the family."
+msgstr "Każda interakcja należy do jednej z 14 rodzin tematycznych. Kolor znacznika kroku, wiersza macierzy i pozycji legendy zawsze wskazuje rodzinę."
+
+msgid "Family"
+msgstr "Rodzina"
+
+msgid "What it covers"
+msgstr "Co obejmuje"
+
+msgid "Interaction types"
+msgstr "Typy interakcji"
+
+msgid "Within a family, the type describes what a single step actually is. The most common types:"
+msgstr "W obrębie rodziny typ opisuje, czym właściwie jest pojedynczy krok. Najczęstsze typy:"
+
+msgid "Message"
+msgstr "Wiadomość"
+
+msgid "One message in the conversation; the role says whether it came from you, the agent, or Codex itself."
+msgstr "Jedna wiadomość w rozmowie; rola mówi, czy pochodzi od Ciebie, od agenta, czy od samego Codexa."
+
+msgid "Reasoning"
+msgstr "Rozumowanie"
+
+msgid "A recorded piece of the model's thinking."
+msgstr "Zapisany fragment myślenia modelu."
+
+msgid "Command"
+msgstr "Komenda"
+
+msgid "A terminal command with its output and exit code."
+msgstr "Komenda terminalowa wraz z wynikiem i kodem wyjścia."
+
+msgid "Tool call"
+msgstr "Wywołanie narzędzia"
+
+msgid "Tool result"
+msgstr "Wynik narzędzia"
+
+msgid "A tool invocation and the answer it returned, linked by a shared call identifier."
+msgstr "Wywołanie narzędzia i zwrócona odpowiedź, połączone wspólnym identyfikatorem wywołania."
+
+msgid "File change"
+msgstr "Zmiana pliku"
+
+msgid "A patch applied to one or more files."
+msgstr "Łatka nałożona na jeden lub więcej plików."
+
+msgid "Plan"
+msgstr "Plan"
+
+msgid "Plan step"
+msgstr "Krok planu"
+
+msgid "The agent's working plan and its individual steps."
+msgstr "Roboczy plan agenta i jego poszczególne kroki."
+
+msgid "Approval"
+msgstr "Zatwierdzenie"
+
+msgid "Permission request"
+msgstr "Żądanie uprawnienia"
+
+msgid "User input request"
+msgstr "Żądanie danych od użytkownika"
+
+msgid "The agent pauses and waits for your decision."
+msgstr "Agent zatrzymuje się i czeka na Twoją decyzję."
+
+msgid "MCP call"
+msgstr "Wywołanie MCP"
+
+msgid "MCP server"
+msgstr "Serwer MCP"
+
+msgid "Calls to external tools connected through the Model Context Protocol."
+msgstr "Wywołania zewnętrznych narzędzi podłączonych przez Model Context Protocol."
+
+msgid "Web action"
+msgstr "Akcja sieciowa"
+
+msgid "A web search or page visit."
+msgstr "Wyszukiwanie w sieci lub odwiedziny strony."
+
+msgid "Compaction"
+msgstr "Kompakcja"
+
+msgid "Codex summarized older conversation history to fit the model's memory."
+msgstr "Codex streścił starszą część rozmowy, aby zmieścić się w pamięci modelu."
+
+msgid "Usage"
+msgstr "Użycie"
+
+msgid "A token-usage counter update."
+msgstr "Aktualizacja licznika zużycia tokenów."
+
+msgid "Error"
+msgstr "Błąd"
+
+msgid "Warning"
+msgstr "Ostrzeżenie"
+
+msgid "Something went wrong, or nearly did."
+msgstr "Coś poszło nie tak albo prawie poszło."
+
+msgid "Unknown event"
+msgstr "Nieznane zdarzenie"
+
+msgid "A log entry this application does not recognize yet. It is kept in full and listed in the file's unknown_types metadata — nothing is discarded."
+msgstr "Wpis logu, którego ta aplikacja jeszcze nie rozpoznaje. Jest zachowywany w całości i wymieniany w metadanych pliku unknown_types — nic nie jest wyrzucane."
+
+msgid "Lifecycle and status"
+msgstr "Cykl życia i status"
+
+msgid "Lifecycle is the phase an interaction reached: started, streaming (arriving in pieces), waiting (for your decision), completed, failed, cancelled, or aborted. Status is the final outcome shown alongside it — most importantly success or error. Steps with errors get a red marker, and lanes containing them get a red border."
+msgstr "Cykl życia to faza, do której doszła interakcja: rozpoczęta, strumieniowana (nadchodzi kawałkami), oczekująca (na Twoją decyzję), ukończona, nieudana, anulowana lub przerwana. Status to końcowy wynik pokazywany obok — przede wszystkim sukces lub błąd. Kroki z błędami dostają czerwony znacznik, a pasy, które je zawierają — czerwoną ramkę."
+
+msgid "Details"
+msgstr "Szczegóły"
+
+msgid "Select a step, matrix cell, table row, or relation to inspect it. The details band above the chart lists the step's key fields on the left, and beside them three collapsible layers — the same data at three depths:"
+msgstr "Wybierz krok, komórkę macierzy, wiersz tabeli lub relację, aby go obejrzeć. Pas szczegółów nad wykresem wypisuje po lewej kluczowe pola kroku, a obok nich trzy zwijane warstwy — te same dane na trzech głębokościach:"
+
+msgid "Content"
+msgstr "Treść"
+
+msgid "A decoded, human-readable view of the step, adapted to its type: commands show the command line with exit code and output, patches show a colored diff per file, tool calls show their arguments and unwrapped result, token counters show a number grid. Open by default — this answers most questions."
+msgstr "Odczytany, czytelny widok kroku dopasowany do jego typu: komendy pokazują linię polecenia z kodem wyjścia i wynikiem, patche kolorowany diff na każdy plik, wywołania narzędzi swoje argumenty i rozpakowany wynik, liczniki tokenów siatkę liczb. Rozwinięty domyślnie — odpowiada na większość pytań."
+
+msgid "Normalized interaction"
+msgstr "Znormalizowana interakcja"
+
+msgid "What the parser derived from the log: correlation identifiers, results, and metadata. Fields already listed at the top of the panel are omitted here to avoid repetition; the complete JSON is one click away under Full JSON."
+msgstr "To, co parser wyprowadził z logu: identyfikatory korelacji, wyniki i metadane. Pola wypisane już na górze panelu są tu pominięte, aby uniknąć powtórzeń; kompletny JSON jest o jedno kliknięcie, pod pozycją Pełny JSON."
+
+msgid "Source records"
+msgstr "Rekordy źródłowe"
+
+msgid "The exact JSONL lines of the original log file this step was built from — one card per line, with the envelope type, subtype, position, and timestamp in the card header and the untouched record underneath."
+msgstr "Dokładne linie JSONL oryginalnego pliku logu, z których zbudowano ten krok — jedna karta na linię, z typem koperty, podtypem, pozycją i znacznikiem czasu w nagłówku karty oraz nienaruszonym rekordem poniżej."
+
+msgid "The data flows one way: log lines → parser → normalized interaction → step on the chart. Long previews are cut with an explicit notice and a button that reveals everything — nothing is truncated silently. Each JSON layer has a copy button. Press Escape to clear the selection."
+msgstr "Dane płyną w jedną stronę: linie logu → parser → znormalizowana interakcja → krok na wykresie. Długie podglądy są ucinane z wyraźnym komunikatem i przyciskiem odsłaniającym całość — nic nie jest skracane po cichu. Każda warstwa JSON ma przycisk kopiowania. Naciśnij Escape, aby wyczyścić zaznaczenie."
+
+msgid "Below the step title a bar navigates to the previous and next step. Files a step touched are listed as clickable resources inside its Content layer, next to what the step did. The remaining relations are only the causal ones, grouped by verb, each pointing at a step number — turn and agent membership live in the field list instead."
+msgstr "Pod tytułem kroku pasek nawiguje do poprzedniego i następnego kroku. Pliki, których krok dotknął, są wypisane jako klikalne zasoby w jego warstwie Treść, tuż przy tym, co krok zrobił. Pozostałe relacje to wyłącznie związki przyczynowe, pogrupowane według czasownika, każdy wskazuje numer kroku — przynależność do tury i agenta znajduje się na liście pól."
+
+msgid "How the Content layer is built"
+msgstr "Jak zbudowana jest warstwa Treść"
+
+msgid "Whatever the step type, the Content layer always uses the same sections in the same order: What, Where, Input, Result, Status, Timing, Provenance. Every value is read from the original log line first and from the parser's summary only as a fallback, so nothing depends on the shortened description."
+msgstr "Niezależnie od typu kroku warstwa Treść używa zawsze tych samych sekcji w tej samej kolejności: Co, Gdzie, Wejście, Wynik, Status, Czas, Pochodzenie. Każda wartość czytana jest najpierw z oryginalnej linii logu, a z podsumowania parsera dopiero w ostateczności — dzięki temu nic nie zależy od skróconego opisu."
+
+msgid "not in the log"
+msgstr "brak w logu"
+
+msgid "The field belongs to this step type, but Codex did not record it."
+msgstr "Pole należy do tego typu kroku, ale Codex go nie zapisał."
+
+msgid "empty"
+msgstr "puste"
+
+msgid "The field is in the log with no value — an empty error output of a successful command, for example."
+msgstr "Pole jest w logu, ale nie ma wartości — np. puste wyjście błędów udanej komendy."
+
+msgid "unreadable"
+msgstr "nieczytelne"
+
+msgid "The value is there but could not be decoded; the layers below still hold it untouched."
+msgstr "Wartość jest, ale nie udało się jej odczytać; warstwy poniżej trzymają ją w oryginale."
+
+msgid "The counter in the corner — for example 8 of 9 fields — says how much of the step this view managed to fill in, and a collapsed list at the bottom names the keys of the source record that no field claimed yet: nothing is hidden silently. Step types without a dedicated layout get a generic view with the source record shown as readable JSON."
+msgstr "Licznik w rogu — na przykład 8 z 9 pól — mówi, ile z kroku udało się temu widokowi wypełnić, a zwinięta lista na dole wymienia klucze rekordu źródłowego, których żadne pole jeszcze nie zajęło: nic nie znika po cichu. Typy kroków bez własnego układu dostają widok ogólny z rekordem źródłowym pokazanym jako czytelny JSON."
+
+msgid "Import"
+msgstr "Import"
+
+msgid "The importer accepts raw JSONL and schema v4 only. Reimport original rollout files when migrating from v3."
+msgstr "Importer obsługuje wyłącznie surowe pliki JSONL i schemat v4. Podczas migracji z v3 ponownie zaimportuj oryginalne pliki sesji."
+
+msgid "Imports are repeatable. Every processed session records the raw file it came from, so the import page marks a session as stale once its rollout changes and can refresh it in place. Sessions whose source file is gone are marked orphaned and can be removed. The Codex session directory is only ever read."
+msgstr "Import jest powtarzalny. Każda przetworzona sesja zapisuje plik źródłowy, z którego powstała, więc strona importu oznacza sesję jako nieaktualną, gdy jej rollout się zmieni, i potrafi ją odświeżyć w miejscu. Sesje, których plik źródłowy zniknął, są oznaczane jako osierocone i można je usunąć. Katalog sesji Codexa jest wyłącznie odczytywany."
+
+msgid "APIs"
+msgstr "API"
+
+msgid "Two JSON endpoints back the interface: <a href=\"/api/graph/\"><code>/api/graph/</code></a> returns the full execution graph of a session (without raw payloads), and <code>/api/interaction/?file=…&amp;id=…</code> returns one interaction together with its raw source records."
+msgstr "Interfejs opiera się na dwóch punktach JSON: <a href=\"/api/graph/\"><code>/api/graph/</code></a> zwraca pełny graf wykonania sesji (bez surowych danych), a <code>/api/interaction/?file=…&amp;id=…</code> zwraca jedną interakcję razem z jej surowymi rekordami źródłowymi."
+
+msgid "On this page"
+msgstr "Na tej stronie"
+
+msgid "Import logs - StepAgent"
+msgstr "Import logów - StepAgent"
+
+msgid "Codex sessions"
+msgstr "Sesje Codex"
+
+#, python-format
+msgid "Source: <code>%(source_dir)s</code>. Raw JSONL is preserved and normalized as schema v4."
+msgstr "Źródło: <code>%(source_dir)s</code>. Surowy JSONL jest zachowywany i normalizowany do schematu v4."
+
+msgid "The source directory is only ever read; imports write nothing back to it."
+msgstr "Katalog źródłowy jest wyłącznie odczytywany; import niczego do niego nie zapisuje."
+
+msgid "Search by project, file or session id"
+msgstr "Szukaj po projekcie, pliku lub id sesji"
+
+msgid "Search sessions"
+msgstr "Szukaj sesji"
+
+msgid "Search"
+msgstr "Szukaj"
+
+msgid "Import selected"
+msgstr "Importuj wybrane"
+
+msgid "Import new"
+msgstr "Importuj nowe"
+
+msgid "Refresh changed"
+msgstr "Odśwież zmienione"
+
+msgid "Verify checksums"
+msgstr "Zweryfikuj sumy kontrolne"
+
+msgid "Delete the selected processed sessions? Raw Codex logs are not affected."
+msgstr "Usunąć zaznaczone przetworzone sesje? Surowe logi Codexa pozostaną nietknięte."
+
+msgid "Delete"
+msgstr "Usuń"
+
+msgid "Selecting a row and pressing Import selected always re-imports it, overwriting the processed export."
+msgstr "Zaznaczenie wiersza i „Importuj wybrane” zawsze importuje go ponownie, nadpisując przetworzony eksport."
+
+msgid "No sessions match the current filters."
+msgstr "Żadna sesja nie pasuje do bieżących filtrów."
+
+msgid "Communication"
+msgstr "Komunikacja"
+
+msgid "Planning"
+msgstr "Planowanie"
+
+msgid "Execution"
+msgstr "Wykonanie"
+
+msgid "Tools"
+msgstr "Narzędzia"
+
+msgid "Files"
+msgstr "Pliki"
+
+msgid "Web"
+msgstr "Sieć"
+
+msgid "MCP"
+msgstr "MCP"
+
+msgid "Media"
+msgstr "Media"
+
+msgid "Agents"
+msgstr "Agenci"
+
+msgid "Human control"
+msgstr "Kontrola człowieka"
+
+msgid "Safety"
+msgstr "Bezpieczeństwo"
+
+msgid "Context"
+msgstr "Kontekst"
+
+msgid "Lifecycle"
+msgstr "Cykl życia"
+
+msgid "Messages between you and the agent, including streamed replies."
+msgstr "Wiadomości między Tobą a agentem, łącznie z odpowiedziami strumieniowanymi."
+
+msgid "The model's recorded thinking: reasoning summaries and raw thought content."
+msgstr "Zapisane myślenie modelu: podsumowania rozumowania i surowa treść myśli."
+
+msgid "The agent's working plan: step lists and their status updates."
+msgstr "Roboczy plan agenta: listy kroków i aktualizacje ich statusów."
+
+msgid "Terminal commands the agent runs, with their output and exit status."
+msgstr "Komendy terminalowe uruchamiane przez agenta, wraz z wynikiem i kodem wyjścia."
+
+msgid "Generic tool calls and their results, including dynamically registered tools."
+msgstr "Ogólne wywołania narzędzi i ich wyniki, w tym narzędzia rejestrowane dynamicznie."
+
+msgid "File changes: patches applied to files and turn-level diffs."
+msgstr "Zmiany plików: łatki nakładane na pliki i różnice na poziomie tury."
+
+msgid "Web searches and pages the agent opened."
+msgstr "Wyszukiwania w sieci i strony otwierane przez agenta."
+
+msgid "External tools connected through the Model Context Protocol."
+msgstr "Zewnętrzne narzędzia podłączone przez Model Context Protocol."
+
+msgid "Images and other media: generation, viewing, realtime streams."
+msgstr "Obrazy i inne media: generowanie, oglądanie, strumienie na żywo."
+
+msgid "Sub-agents the main agent spawns, talks to, and waits for."
+msgstr "Pod-agenci, których główny agent uruchamia, z którymi rozmawia i na których czeka."
+
+msgid "Moments when the agent asks you for approval, permissions, or input."
+msgstr "Momenty, w których agent prosi Cię o zgodę, uprawnienia lub informacje."
+
+msgid "Safety events: moderation, guardian assessments, model verification."
+msgstr "Zdarzenia bezpieczeństwa: moderacja, oceny strażnika, weryfikacja modelu."
+
+msgid "Context changes: compaction, rollbacks, environment and thread settings."
+msgstr "Zmiany kontekstu: kompakcja, cofnięcia, ustawienia środowiska i wątku."
+
+msgid "Session plumbing: turn boundaries, token counters, errors, unknown events."
+msgstr "Techniczne zaplecze sesji: granice tur, liczniki tokenów, błędy, nieznane zdarzenia."
+
+#, python-format
+msgid "Unable to load the observatory: %(error)s"
+msgstr "Nie udało się wczytać obserwatorium: %(error)s"
+
+msgid "New"
+msgstr "Nowa"
+
+msgid "Up to date"
+msgstr "Aktualna"
+
+msgid "Stale"
+msgstr "Nieaktualna"
+
+msgid "Not tracked"
+msgstr "Bez metryki importu"
+
+msgid "Orphaned"
+msgstr "Osierocona"
+
+msgid "size differs"
+msgstr "inny rozmiar"
+
+msgid "source is newer"
+msgstr "źródło jest nowsze"
+
+msgid "checksum differs"
+msgstr "inna suma kontrolna"
+
+#, python-format
+msgid "%(count)s imported"
+msgstr "%(count)s zaimportowanych"
+
+#, python-format
+msgid "%(count)s refreshed"
+msgstr "%(count)s odświeżonych"
+
+#, python-format
+msgid "%(count)s unchanged"
+msgstr "%(count)s bez zmian"
+
+#, python-format
+msgid "%(count)s deleted"
+msgstr "%(count)s usuniętych"
+
+#, python-format
+msgid "%(count)s with a checksum mismatch"
+msgstr "%(count)s z niezgodną sumą kontrolną"
+
+#, python-format
+msgid "%(count)s failed"
+msgstr "%(count)s nieudanych"
+
+#, python-format
+msgid "Imported %(source)s → %(target)s"
+msgstr "Zaimportowano %(source)s → %(target)s"
+
+#, python-format
+msgid "Refreshed %(source)s → %(target)s (was %(before)s, now %(after)s interactions)"
+msgstr "Odświeżono %(source)s → %(target)s (było %(before)s, jest %(after)s interakcji)"
+
+#, python-format
+msgid "Skipped %(source)s — no changes"
+msgstr "Pominięto %(source)s — bez zmian"
+
+#, python-format
+msgid "Deleted %(filename)s"
+msgstr "Usunięto %(filename)s"
+
+#, python-format
+msgid "Checksum mismatch: %(filename)s no longer matches its source"
+msgstr "Niezgodna suma kontrolna: %(filename)s nie odpowiada już swojemu źródłu"
+
+#, python-format
+msgid "Refused %(source)s: the source holds no records; the previous export was kept."
+msgstr "Odrzucono %(source)s: źródło nie zawiera żadnych rekordów; zachowano poprzedni eksport."
+
+#, python-format
+msgid "%(filename)s: source file is missing; only deletion is available."
+msgstr "%(filename)s: brak pliku źródłowego; dostępne jest tylko usunięcie."
+
+#, python-format
+msgid "Failed %(filename)s: %(error)s"
+msgstr "Nie udało się zaimportować %(filename)s: %(error)s"
+
+#, python-format
+msgid "…and %(count)s more failures."
+msgstr "…oraz %(count)s kolejnych błędów."
+
+msgid "Nothing selected."
+msgstr "Nic nie zaznaczono."
+
+msgid "No new sessions to import."
+msgstr "Brak nowych sesji do zaimportowania."
+
+msgid "Every imported session is up to date."
+msgstr "Wszystkie zaimportowane sesje są aktualne."
+
+msgid "No sessions found."
+msgstr "Nie znaleziono sesji."
+
+msgid "All checksums match their sources."
+msgstr "Wszystkie sumy kontrolne zgadzają się ze źródłami."
+
+msgid "Nothing selected that has been imported."
+msgstr "Nie wybrano żadnej zaimportowanej sesji."
+
+msgid "Source updated"
+msgstr "Aktualizacja źródła"
+
+msgid "Imported"
+msgstr "Zaimportowano"
+
+msgid "All"
+msgstr "Wszystkie"
+
+#, python-format
+msgid "Session import failed: %(error)s"
+msgstr "Import sesji nie powiódł się: %(error)s"
+
+#~ msgid "Format"
+#~ msgstr "Format"
+
+#~ msgid "Raw session"
+#~ msgstr "Surowa sesja"
+
+#, python-format
+#~ msgid "Imported on %(when)s"
+#~ msgstr "Zaimportowano %(when)s"
+
+#~ msgid "No JSONL files found."
+#~ msgstr "Nie znaleziono plików JSONL."
+
+#~ msgid "Processed sessions"
+#~ msgstr "Przetworzone sesje"
+
+#~ msgid "Refresh"
+#~ msgstr "Odśwież"
+
+#~ msgid "None."
+#~ msgstr "Brak."
+
+#~ msgid "The human-readable text of the step: the message, the command with its output, or the reasoning text. Open by default — this answers most questions."
+#~ msgstr "Czytelny tekst kroku: wiadomość, polecenie wraz z jego wyjściem albo tekst rozumowania. Otwarta domyślnie — to odpowiada na większość pytań."
+
+#~ msgid "The details panel shows two JSON blocks: the normalized interaction (the application's tidy summary) and the raw records (the exact log lines it was built from). Press Escape to clear the selection."
+#~ msgstr "Panel szczegółów pokazuje dwa bloki JSON: znormalizowaną interakcję (uporządkowane streszczenie aplikacji) oraz surowe rekordy (dokładne linie logu, z których powstała). Naciśnij Escape, aby wyczyścić zaznaczenie."
+
+#~ msgid "Graph API"
+#~ msgstr "API grafu"
+
+#~ msgid "Order"
+#~ msgstr "Kolejność"
+
+#~ msgid "Turn number"
+#~ msgstr "Numer tury"
+
+#~ msgid "Turns"
+#~ msgstr "Tury"

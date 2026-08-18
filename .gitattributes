@@ -1,0 +1,31 @@
+# Normalize to LF in the repository so a Windows clone cannot commit CRLF back.
+* text=auto eol=lf
+
+# Shell scripts must stay LF even when checked out on Windows: a CRLF run.sh
+# breaks under WSL and Git Bash.
+*.sh text eol=lf
+
+# PowerShell is the opposite case — CRLF is the native convention there and
+# Windows PowerShell 5.1 is the least forgiving consumer.
+*.ps1 text eol=crlf
+
+# Explicit for the formats that carry the app and its data.
+*.py    text eol=lf
+*.js    text eol=lf
+*.mjs   text eol=lf
+*.css   text eol=lf
+*.html  text eol=lf
+*.md    text eol=lf
+*.json  text eol=lf
+*.jsonl text eol=lf
+*.toml  text eol=lf
+*.cfg   text eol=lf
+*.ini   text eol=lf
+*.po    text eol=lf
+
+# Never touched by end-of-line conversion.
+*.mo  binary
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary

@@ -1,0 +1,24 @@
+{"type": "session_meta", "timestamp": "2026-08-07T00:00:00Z", "payload": {"id": "demo-session", "timestamp": "2026-08-07T00:00:00Z", "cwd": "/workspace/demo", "originator": "codex_cli", "cli_version": "demo", "model_provider": "openai"}}
+{"type": "turn_context", "timestamp": "2026-08-07T00:00:00Z", "payload": {"turn_id": "turn-1", "model": "gpt-demo"}}
+{"type": "event_msg", "timestamp": "2026-08-07T00:00:01Z", "payload": {"type": "task_started", "turn_id": "turn-1"}}
+{"type": "event_msg", "timestamp": "2026-08-07T00:00:02Z", "payload": {"type": "user_message", "message": "Inspect the parser, patch the bug, and run tests."}}
+{"type": "response_item", "timestamp": "2026-08-07T00:00:03Z", "payload": {"type": "reasoning", "summary": [{"text": "I need to inspect the parser before changing it."}]}}
+{"type": "response_item", "timestamp": "2026-08-07T00:00:04Z", "payload": {"type": "function_call", "name": "shell", "call_id": "read-1", "arguments": "{\"command\": \"sed -n '1,220p' /workspace/demo/parser.py\"}"}}
+{"type": "response_item", "timestamp": "2026-08-07T00:00:05Z", "payload": {"type": "function_call_output", "call_id": "read-1", "output": "def parse(value):\n    return value[0]", "exit_code": 0}}
+{"type": "response_item", "timestamp": "2026-08-07T00:00:06Z", "payload": {"type": "reasoning", "summary": [{"text": "The parser crashes for empty values; add a guard."}]}}
+{"type": "response_item", "timestamp": "2026-08-07T00:00:07Z", "payload": {"type": "function_call", "name": "apply_patch", "call_id": "patch-1", "input": "*** Begin Patch\n*** Update File: /workspace/demo/parser.py\n@@\n def parse(value):\n+    if not value:\n+        return None\n     return value[0]\n*** End Patch"}}
+{"type": "response_item", "timestamp": "2026-08-07T00:00:08Z", "payload": {"type": "function_call_output", "call_id": "patch-1", "output": "Done!", "exit_code": 0}}
+{"type": "response_item", "timestamp": "2026-08-07T00:00:09Z", "payload": {"type": "function_call", "name": "shell", "call_id": "test-1", "arguments": "{\"command\": \"pytest -q /workspace/demo/tests/test_parser.py\"}"}}
+{"type": "response_item", "timestamp": "2026-08-07T00:00:10Z", "payload": {"type": "function_call_output", "call_id": "test-1", "output": "FAILED test_empty - AssertionError", "exit_code": 1}}
+{"type": "response_item", "timestamp": "2026-08-07T00:00:11Z", "payload": {"type": "reasoning", "summary": [{"text": "The expected empty value is an empty string, not None."}]}}
+{"type": "response_item", "timestamp": "2026-08-07T00:00:12Z", "payload": {"type": "function_call", "name": "apply_patch", "call_id": "patch-2", "input": "*** Begin Patch\n*** Update File: /workspace/demo/parser.py\n@@\n-        return None\n+        return ''\n*** End Patch"}}
+{"type": "response_item", "timestamp": "2026-08-07T00:00:13Z", "payload": {"type": "function_call_output", "call_id": "patch-2", "output": "Done!", "exit_code": 0}}
+{"type": "response_item", "timestamp": "2026-08-07T00:00:14Z", "payload": {"type": "function_call", "name": "shell", "call_id": "test-2", "arguments": "{\"command\": \"pytest -q /workspace/demo/tests/test_parser.py\"}"}}
+{"type": "response_item", "timestamp": "2026-08-07T00:00:15Z", "payload": {"type": "function_call_output", "call_id": "test-2", "output": "2 passed in 0.05s", "exit_code": 0}}
+{"type": "event_msg", "timestamp": "2026-08-07T00:00:16Z", "payload": {"type": "agent_message", "message": "The parser now handles empty input and the tests pass."}}
+{"type": "event_msg", "timestamp": "2026-08-07T00:01:00Z", "payload": {"type": "task_started", "turn_id": "turn-2"}}
+{"type": "event_msg", "timestamp": "2026-08-07T00:01:01Z", "payload": {"type": "user_message", "message": "Show which files were changed."}}
+{"type": "response_item", "timestamp": "2026-08-07T00:01:02Z", "payload": {"type": "reasoning", "summary": [{"text": "I should inspect the repository status."}]}}
+{"type": "response_item", "timestamp": "2026-08-07T00:01:03Z", "payload": {"type": "function_call", "name": "shell", "call_id": "status-1", "arguments": "{\"command\": \"git -C /workspace/demo status --short\"}"}}
+{"type": "response_item", "timestamp": "2026-08-07T00:01:04Z", "payload": {"type": "function_call_output", "call_id": "status-1", "output": " M parser.py", "exit_code": 0}}
+{"type": "event_msg", "timestamp": "2026-08-07T00:01:05Z", "payload": {"type": "agent_message", "message": "Only parser.py was changed."}}

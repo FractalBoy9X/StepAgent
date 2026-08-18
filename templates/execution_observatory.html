@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Session timeline - StepAgent" %}{% endblock %}
+{% block head %}<link rel="stylesheet" href="{% static 'visualization/observatory-2d.css' %}?v=9"><script src="{% url 'javascript-catalog' %}"></script>{% endblock %}
+{% block content %}
+<form class="session-picker" method="get">
+  <select class="input" name="file" aria-label="{% translate 'Session' %}" onchange="this.form.submit()">
+    <option value="">{% translate "Latest session" %}</option>
+    {% for item in available_sessions %}<option value="{{ item.filename }}" {% if item.filename == selected_file %}selected{% endif %}>{{ item.filename }}</option>{% endfor %}
+  </select>
+  <noscript><button class="btn">{% translate "Load" %}</button></noscript>
+  <details class="help-popover"><summary aria-label="{% translate 'Help' %}">i</summary><div class="help-popover-body">{% translate "This page replays one imported Codex session: every interaction from its log becomes a numbered step, in the exact order it happened." %} <a href="{% url 'instructions' %}#reading-guide">{% translate "Learn more" %}</a></div></details>
+</form>
+{% if error_message %}<div class="flash error">{{ error_message }}</div>{% endif %}
+{% if visualization %}
+<input id="selected-session-file" type="hidden" value="{{ selected_file }}">
+<section id="selection-band" class="selection-band side-panel"><div class="panel-heading"><h2>{% translate "Selection" %}</h2><details class="help-popover align-end"><summary aria-label="{% translate 'Help' %}">i</summary><div class="help-popover-body">{% translate "Details of the selected step in three layers: its readable content, the normalized interaction the parser derived, and the exact raw log lines it was built from. Press Escape to clear the selection." %} <a href="{% url 'instructions' %}#selection">{% translate "Learn more" %}</a></div></details></div>
+  <div id="selection-box" class="selection-box"><p class="selection-empty muted">{% translate "No interaction selected." %} {% translate "Click a step, a table row, or a matrix cell — its details will appear here." %}</p></div>
+  <div id="node-relations" class="relation-list"></div>
+</section>
+<div class="observatory-layout">
+  <section class="visualization-panel">
+    <nav class="view-tabs" aria-label="{% translate 'Visualization type' %}">
+      <button class="view-tab active" type="button" data-view="turns" aria-pressed="true"><strong>{% translate "Turn Lanes" %}</strong><span>{% translate "step-by-step" %}</span></button>
+      <button class="view-tab" type="button" data-view="matrix" aria-pressed="false"><strong>{% translate "Activity Matrix" %}</strong><span>{% translate "density by turn" %}</span></button>
+    </nav>
+    <div class="chart-controls">
+      <label class="control-field"><span>{% translate "Scope" %}</span><select class="input" id="turn-filter"><option value="all">{% translate "Entire session" %}</option></select></label>
+      <div class="control-field"><span>{% translate "Spacing" %}</span><div class="segmented" aria-label="{% translate 'Step spacing' %}">
+        <button type="button" data-density="compact" aria-pressed="false">{% translate "Compact" %}</button>
+        <button class="active" type="button" data-density="comfortable" aria-pressed="true">{% translate "Standard" %}</button>
+        <button type="button" data-density="detailed" aria-pressed="false">{% translate "Detailed" %}</button>
+      </div></div>
+      <div class="chart-summary"><span><strong id="visible-count">0</strong> <span id="visible-count-label">{% translate "steps" %}</span></span><span><strong id="visible-errors">0</strong> <span id="visible-errors-label">{% translate "errors" %}</span></span></div>
+      <details class="help-popover align-end"><summary aria-label="{% translate 'Help' %}">i</summary><div class="help-popover-body">{% translate "Turn Lanes shows one horizontal lane per conversation turn, step by step. Activity Matrix shows how much each interaction family did in each turn. Scope narrows both views to a single turn; Spacing changes step size." %} <a href="{% url 'instructions' %}#views">{% translate "Learn more" %}</a></div></details>
+    </div>
+    <div id="chart-stage" class="chart-stage">
+      <div id="chart-empty" class="chart-empty" hidden>{% translate "No interactions in this scope." %}</div>
+    </div>
+    <div id="family-legend" class="family-legend"></div>
+  </section>
+
+  <aside class="side-column">
+    <section class="side-panel"><div class="panel-heading"><h2>{% translate "Session health" %}</h2><details class="help-popover align-end"><summary aria-label="{% translate 'Help' %}">i</summary><div class="help-popover-body">{% translate "Totals for the whole session: normalized interactions, raw log lines they came from, conversation turns, errors, detected retries, and tokens used." %} <a href="{% url 'instructions' %}#reading-guide">{% translate "Learn more" %}</a></div></details></div><div class="metric-grid">
+      <div class="metric"><span>{% translate "Interactions" %}</span><strong>{{ metrics.interaction_count }}</strong></div>
+      <div class="metric"><span>{% translate "Raw records" %}</span><strong>{{ metrics.raw_record_count }}</strong></div>
+      <div class="metric"><span>{% translate "Conversation turns" %}</span><strong>{{ metrics.turn_count }}</strong></div>
+      <div class="metric"><span>{% translate "Errors" %}</span><strong>{{ metrics.errors }}</strong></div>
+      <div class="metric"><span>{% translate "Retries" %}</span><strong>{{ metrics.retries }}</strong></div>
+      <div class="metric"><span>{% translate "Tokens" %}</span><strong>{{ metrics.total_tokens|default:"-" }}</strong></div>
+    </div></section>
+
+    <section class="side-panel"><div class="panel-heading"><h2>{% translate "Interaction explorer" %}</h2><details class="help-popover align-end"><summary aria-label="{% translate 'Help' %}">i</summary><div class="help-popover-body">{% translate "Search and filter every step of the session by family, type, status, or lifecycle. Click a row to select that step in the chart." %} <a href="{% url 'instructions' %}#families">{% translate "Learn more" %}</a></div></details></div>
+      <div class="filters">
+        <input id="node-search" class="input wide" type="search" placeholder="{% translate 'Search interactions' %}">
+        <select id="family-filter" class="input"><option value="">{% translate "All families" %}</option></select>
+        <select id="kind-filter" class="input"><option value="">{% translate "All types" %}</option></select>
+        <select id="status-filter" class="input"><option value="">{% translate "All statuses" %}</option></select>
+        <select id="lifecycle-filter" class="input"><option value="">{% translate "All lifecycle states" %}</option></select>
+      </div>
+      <div class="node-table-wrap"><table><thead><tr><th>#</th><th>{% translate "Type" %}</th><th>{% translate "Label" %}</th></tr></thead><tbody id="node-table-body"></tbody></table></div>
+    </section>
+  </aside>
+</div>
+{{ visualization|json_script:"observatory-2d-data" }}
+{% endif %}
+{% endblock %}
+{% block scripts %}{% if visualization %}<script type="module" src="{% static 'visualization/observatory-2d.js' %}?v=9"></script>{% endif %}{% endblock %}

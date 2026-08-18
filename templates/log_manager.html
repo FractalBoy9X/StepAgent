@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Import logs - StepAgent" %}{% endblock %}
+{% block content %}
+<h1>{% translate "Codex sessions" %}</h1>
+<p class="muted">{% blocktranslate %}Source: <code>{{ source_dir }}</code>. Raw JSONL is preserved and normalized as schema v4.{% endblocktranslate %} {% translate "The source directory is only ever read; imports write nothing back to it." %}</p>
+{% for message in messages %}<div class="flash {% if message.level_tag == 'error' %}error{% elif message.level_tag == 'success' %}success{% else %}info{% endif %}">{{ message }}</div>{% endfor %}
+
+<section class="card card-pad">
+  <form method="get" class="toolbar">
+    <input type="hidden" name="sort" value="{{ state.sort }}">
+    <input type="hidden" name="dir" value="{{ state.dir }}">
+    <input type="hidden" name="status" value="{{ state.status }}">
+    <input class="input toolbar-search" type="search" name="q" value="{{ state.q }}"
+           placeholder="{% translate 'Search by project, file or session id' %}"
+           aria-label="{% translate 'Search sessions' %}">
+    <button class="btn" type="submit">{% translate "Search" %}</button>
+    <span class="toolbar-filters">
+      {% for option in status_options %}
+      <a class="badge filter-chip {% if option.active %}active{% endif %}" href="?{{ option.query }}">{{ option.label }} <b>{{ option.count }}</b></a>
+      {% endfor %}
+    </span>
+  </form>
+
+  <form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="sort" value="{{ state.sort }}">
+    <input type="hidden" name="dir" value="{{ state.dir }}">
+    <input type="hidden" name="status" value="{{ state.status }}">
+    <input type="hidden" name="q" value="{{ state.q }}">
+    <div class="toolbar">
+      <button class="btn btn-primary" name="action" value="import_selected">{% translate "Import selected" %}</button>
+      <button class="btn" name="action" value="import_all">{% translate "Import new" %}</button>
+      <button class="btn" name="action" value="import_stale">{% translate "Refresh changed" %}</button>
+      <button class="btn" name="action" value="verify_checksums">{% translate "Verify checksums" %}</button>
+      <button class="btn btn-danger" name="action" value="delete_selected" data-confirm="{% translate 'Delete the selected processed sessions? Raw Codex logs are not affected.' %}">{% translate "Delete" %}</button>
+      <span class="muted toolbar-count">{{ sessions|length }} / {{ total_count }}</span>
+    </div>
+    <p class="muted" style="margin-top:0">{% translate "Selecting a row and pressing Import selected always re-imports it, overwriting the processed export." %}</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          {% for column in columns %}
+          <th aria-sort="{{ column.aria }}"><a class="sort-link {% if column.active %}active{% endif %}" href="?{{ column.query }}">{{ column.label }} <span class="sort-indicator">{{ column.indicator }}</span></a></th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in sessions %}
+        <tr>
+          <td>{% if item.raw_relative %}<input type="checkbox" name="selected_files" value="{{ item.raw_relative }}">{% else %}<input type="checkbox" name="selected_sessions" value="{{ item.filename }}">{% endif %}</td>
+          <td>
+            <div class="session-label">{% if item.is_imported %}<a href="/visualization/?file={{ item.filename|urlencode }}">{{ item.label }}</a>{% else %}{{ item.label }}{% endif %}</div>
+            <div class="muted session-path">{{ item.raw_relative|default:item.target }}</div>
+          </td>
+          <td>{{ item.started_display|default:"—" }}</td>
+          <td>{{ item.updated_display|default:"—" }}</td>
+          <td>{{ item.imported_display|default:"—" }}</td>
+          <td>{{ item.size_display|default:"—" }}</td>
+          <td>{{ item.interaction_count|default_if_none:"—" }}</td>
+          <td>
+            <span class="badge badge-{{ item.status_tone }}">{{ item.status_label }}</span>
+            {% if item.reason_label %}<div class="muted session-path">{{ item.reason_label }}</div>{% endif %}
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="8">{% translate "No sessions match the current filters." %}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </form>
+</section>
+{% endblock %}
+{% block scripts %}
+<script>
+document.addEventListener("submit", (event) => {
+  const submitter = event.submitter;
+  const question = submitter && submitter.dataset ? submitter.dataset.confirm : "";
+  if (question && !window.confirm(question)) {
+    event.preventDefault();
+  }
+});
+</script>
+{% endblock %}

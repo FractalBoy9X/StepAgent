@@ -1,0 +1,1425 @@
+/* Observatory 2D views (Turn Lanes + Activity Matrix). Depends on the design
+   tokens defined in base.css (:root). */
+
+:root {
+  /* How tall a column of the Selection band may grow before it scrolls. The
+     chart stage gives up the same amount while the band is expanded, so the
+     two together keep fitting the viewport. */
+  --selection-col-max: min(34vh, 380px);
+}
+
+.session-picker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.session-picker select {
+  max-width: 760px;
+}
+
+.observatory-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 12px;
+  align-items: start;
+}
+
+.visualization-panel,
+.side-panel {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #0b111c;
+}
+
+/* --- View tabs -------------------------------------------------------- */
+
+.view-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-bottom: 1px solid var(--line);
+  background: #0e1623;
+}
+
+.view-tab {
+  position: relative;
+  min-height: 50px;
+  padding: 9px 16px;
+  border: 0;
+  border-right: 1px solid var(--line);
+  background: transparent;
+  color: #9eabbc;
+  text-align: left;
+  cursor: pointer;
+}
+
+.view-tab:last-child {
+  border-right: 0;
+}
+
+.view-tab:hover {
+  background: #141e2d;
+  color: var(--text-strong);
+}
+
+.view-tab.active {
+  background: #162131;
+  color: var(--text-strong);
+}
+
+.view-tab.active::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 3px;
+  background: #2dd4bf;
+}
+
+.view-tab strong {
+  display: block;
+  font-size: 13px;
+  letter-spacing: 0;
+}
+
+.view-tab span {
+  color: #738197;
+  font-size: 10px;
+}
+
+/* --- Chart controls --------------------------------------------------- */
+
+.chart-controls {
+  min-height: 58px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--line);
+  background: #0a121e;
+}
+
+.control-field {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.control-field > span {
+  color: var(--muted);
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.control-field select {
+  width: auto;
+  min-width: 150px;
+}
+
+.segmented {
+  display: inline-flex;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+}
+
+.segmented button {
+  min-height: 32px;
+  padding: 0 10px;
+  border: 0;
+  border-right: 1px solid var(--line-strong);
+  background: #111b2a;
+  color: #9eabbc;
+  cursor: pointer;
+}
+
+.segmented button:last-child {
+  border-right: 0;
+}
+
+.segmented button.active {
+  background: #26364a;
+  color: white;
+}
+
+.chart-summary {
+  margin-left: auto;
+  display: flex;
+  gap: 14px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.chart-summary strong {
+  color: var(--text-strong);
+  font-size: 12px;
+}
+
+/* --- Chart stage ------------------------------------------------------ */
+
+.chart-stage {
+  /* Fits its content: a session with two lanes should not leave a huge empty
+     area between the lanes and the legend. */
+  min-height: 300px;
+  max-height: calc(100vh - 205px);
+  overflow: auto;
+  padding: 14px;
+  scrollbar-color: #42526a #0b111c;
+}
+
+/* An expanded Selection band sits above the stage and eats into the same
+   viewport; without this the page grows a second scrollbar and the lanes drop
+   below the fold. min-height still wins, so the stage never shrinks past 300px. */
+body:has(.selection-box.is-detail) .chart-stage,
+body:has(.selection-box.is-group) .chart-stage {
+  max-height: calc(100vh - 205px - var(--selection-col-max));
+}
+
+.chart-empty {
+  min-height: 260px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+}
+
+.chart-empty[hidden] {
+  display: none;
+}
+
+/* --- Turn Lanes ------------------------------------------------------- */
+
+.turn-stack {
+  display: grid;
+  gap: 10px;
+}
+
+.turn-lane {
+  overflow: hidden;
+  border: 1px solid #27354a;
+  border-radius: 6px;
+  background: #0c1522;
+}
+
+.turn-lane.has-errors {
+  border-color: #713847;
+}
+
+.turn-lane.initialization {
+  border-style: dashed;
+}
+
+.turn-lane.initialization .turn-heading {
+  background: #111827;
+}
+
+.turn-lane.initialization .turn-id {
+  color: #a7b2c2;
+}
+
+.turn-heading {
+  min-height: 51px;
+  padding: 8px 11px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  /* The message block grows downwards when expanded; centring would drift. */
+  align-items: start;
+  gap: 10px;
+  border-bottom: 1px solid #26344a;
+  background: #101b2a;
+}
+
+.turn-id {
+  min-width: 42px;
+  /* Nudged onto the first line of the 13px/1.5 message next to it. */
+  padding-top: 3px;
+  color: #5eead4;
+  font: 700 11px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* --turn-copy-lines follows the density control; JS sets it per lane. */
+.turn-copy {
+  --turn-copy-lines: 4;
+  min-width: 0;
+}
+
+/* Only the initialization lane still carries a heading word here; every other
+   lane already shows its number in .turn-id, so the space goes to the message. */
+.turn-copy strong {
+  display: block;
+  overflow: hidden;
+  color: #edf3f8;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+.turn-copy-text {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 13px;
+  line-height: 1.5;
+  /* The prompt's own line breaks are part of its meaning. */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--turn-copy-lines);
+  line-clamp: var(--turn-copy-lines);
+  overflow: hidden;
+}
+
+.turn-copy.is-expanded .turn-copy-text {
+  display: block;
+  /* A whole number of 1.5em rows, so scrolling never cuts a line in half. */
+  max-height: 24em;
+  overflow-y: auto;
+  -webkit-line-clamp: none;
+  line-clamp: none;
+  /* Marks the block as a scrollable quotation rather than a rendering glitch. */
+  padding-left: 10px;
+  border-left: 2px solid #2b3b55;
+  scrollbar-color: #42526a #0b111c;
+}
+
+.turn-copy-empty {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* [hidden] loses to display:flex without this. */
+.turn-copy-actions[hidden] {
+  display: none;
+}
+
+.turn-copy-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.turn-copy-toggle {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.turn-copy-toggle:hover {
+  text-decoration: underline;
+}
+
+.turn-copy-note {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.turn-copy-open {
+  padding: 1px 7px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface-btn);
+  color: var(--text-soft);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.turn-copy-open:hover,
+.turn-copy-open.active {
+  border-color: var(--accent);
+  color: var(--text-strong);
+}
+
+.turn-counts {
+  padding-top: 4px;
+  color: #8492a6;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.turn-counts .error-count {
+  color: var(--danger);
+}
+
+.turn-track-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-color: #42526a #0b111c;
+}
+
+.turn-track {
+  --step-width: 78px;
+  position: relative;
+  min-width: 100%;
+  width: max-content;
+  min-height: 126px;
+  padding: 14px 18px 12px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--step-width);
+  align-items: start;
+}
+
+.turn-track::before {
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: 35px;
+  right: 35px;
+  height: 2px;
+  background: #30425a;
+}
+
+.turn-track[data-density="compact"] {
+  --step-width: 46px;
+  min-height: 84px;
+}
+
+.turn-track[data-density="detailed"] {
+  --step-width: 116px;
+  min-height: 146px;
+}
+
+.step-node {
+  --family-color: #94a3b8;
+  position: relative;
+  z-index: 1;
+  width: calc(var(--step-width) - 8px);
+  min-height: 96px;
+  padding: 0 3px 5px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: transparent;
+  color: #dce5ed;
+  text-align: center;
+  cursor: pointer;
+}
+
+.step-node:hover {
+  background: #172336;
+  border-color: #3d5069;
+}
+
+.step-node.active {
+  background: #1d2b3d;
+  border-color: var(--text-strong);
+}
+
+.step-number {
+  display: block;
+  height: 15px;
+  color: #718096;
+  font: 9px/15px ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.step-marker {
+  width: 17px;
+  height: 17px;
+  margin: 3px auto 7px;
+  display: grid;
+  place-items: center;
+  border: 3px solid #0c1522;
+  border-radius: 50%;
+  background: var(--family-color);
+  box-shadow: 0 0 0 1px var(--family-color);
+}
+
+.step-node.error .step-marker {
+  background: var(--danger);
+  box-shadow: 0 0 0 2px var(--danger);
+}
+
+.step-kind {
+  display: block;
+  overflow: hidden;
+  color: var(--family-color);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 9px;
+  text-transform: uppercase;
+}
+
+.step-label {
+  display: -webkit-box;
+  margin-top: 3px;
+  overflow: hidden;
+  color: #b9c5d2;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  font-size: 10px;
+  line-height: 1.25;
+}
+
+.turn-track[data-density="compact"] .step-node {
+  width: 38px;
+  min-height: 54px;
+  padding-inline: 0;
+}
+
+.turn-track[data-density="compact"] .step-kind,
+.turn-track[data-density="compact"] .step-label {
+  display: none;
+}
+
+.turn-track[data-density="detailed"] .step-label {
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+/* --- Activity Matrix -------------------------------------------------- */
+
+.matrix-scroll {
+  overflow: auto;
+  border: 1px solid #27354a;
+  border-radius: 6px;
+  background: #0b1420;
+}
+
+.matrix-grid {
+  --matrix-columns: 1;
+  min-width: max-content;
+  display: grid;
+  grid-template-columns: 154px repeat(var(--matrix-columns), minmax(58px, 1fr));
+}
+
+.matrix-corner,
+.matrix-column,
+.matrix-family {
+  position: sticky;
+  z-index: 3;
+  background: #101b2a;
+}
+
+.matrix-corner {
+  left: 0;
+  top: 0;
+  z-index: 5;
+  min-height: 48px;
+  border-right: 1px solid #2a3a50;
+  border-bottom: 1px solid #2a3a50;
+}
+
+.matrix-column {
+  top: 0;
+  min-height: 48px;
+  padding: 8px 4px;
+  border-right: 1px solid #26354a;
+  border-bottom: 1px solid #2a3a50;
+  color: #aebaca;
+  text-align: center;
+  font-size: 10px;
+}
+
+.matrix-column strong {
+  display: block;
+  color: #e9eff5;
+  font-size: 11px;
+}
+
+.matrix-family {
+  left: 0;
+  min-height: 48px;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border-right: 1px solid #2a3a50;
+  border-bottom: 1px solid #26354a;
+  color: #c9d3de;
+  font-size: 10px;
+}
+
+.matrix-family::before {
+  content: "";
+  width: 4px;
+  align-self: stretch;
+  border-radius: 2px;
+  background: var(--family-color);
+}
+
+.matrix-cell {
+  position: relative;
+  min-width: 58px;
+  min-height: 48px;
+  padding: 3px;
+  border: 0;
+  border-right: 1px solid #202e40;
+  border-bottom: 1px solid #202e40;
+  background: #0c1623;
+  color: #eef4f8;
+  cursor: default;
+}
+
+.matrix-cell.has-events {
+  cursor: pointer;
+  background: color-mix(in srgb, var(--family-color) var(--cell-strength), #0c1623);
+}
+
+.matrix-cell.has-events:hover {
+  outline: 2px solid #d9e3ec;
+  outline-offset: -3px;
+}
+
+.matrix-cell.active {
+  outline: 2px solid white;
+  outline-offset: -3px;
+}
+
+.matrix-count {
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.matrix-error {
+  position: absolute;
+  top: 3px;
+  right: 4px;
+  color: #fecdd3;
+  font-size: 9px;
+}
+
+/* --- Family legend ---------------------------------------------------- */
+
+.family-legend {
+  padding: 10px 2px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  color: #aab8ca;
+  font-size: 11px;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend-item.absent {
+  opacity: .55;
+}
+
+.legend-swatch {
+  width: 13px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--family-color);
+}
+
+/* --- Side column ------------------------------------------------------ */
+
+.side-column {
+  display: grid;
+  gap: 12px;
+}
+
+.side-panel {
+  padding: 13px;
+}
+
+.side-panel h2 {
+  margin: 0 0 10px;
+  font-size: 13px;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.metric {
+  min-width: 0;
+  padding: 7px;
+  border: 1px solid #26364c;
+  border-radius: 5px;
+  background: #0a1421;
+}
+
+.metric strong {
+  display: block;
+  color: var(--text-strong);
+  font-size: 17px;
+}
+
+.metric span {
+  color: #8290a3;
+  font-size: 9px;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.filters .wide {
+  grid-column: 1 / -1;
+}
+
+.node-table-wrap {
+  max-height: 310px;
+  overflow: auto;
+  border: 1px solid #26364c;
+  border-radius: 5px;
+}
+
+.node-row {
+  cursor: pointer;
+}
+
+.node-row:hover,
+.node-row.active {
+  background: #1a293b;
+}
+
+.node-row td {
+  padding: 7px;
+  font-size: 10px;
+}
+
+.node-row td:last-child {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.node-row-empty td {
+  padding: 10px 7px;
+  font-size: 10px;
+}
+
+/* --- Selection band --------------------------------------------------- */
+
+/* Full-width band above the chart. Empty it is a single line of guidance;
+   selected it spreads the details across columns instead of one long scroll. */
+.selection-band {
+  margin-bottom: 12px;
+}
+
+.selection-box {
+  min-height: 0;
+}
+
+.selection-box.is-detail,
+.selection-box.is-group {
+  display: grid;
+  gap: 14px;
+}
+
+/* What the step is | what it did | the parser and log layers behind it. */
+.selection-box.is-detail {
+  grid-template-columns: 280px minmax(0, 1.4fr) minmax(0, 1fr);
+}
+
+.selection-box.is-group {
+  grid-template-columns: 280px minmax(0, 1fr);
+}
+
+/* Each column scrolls on its own. A tall Content layer (diffs, raw records)
+   must not stretch the band and push the lanes below the fold, and one shared
+   overflow here would bring back the single giant scrollbar this replaced. */
+.selection-col-side,
+.selection-col-main,
+.selection-col-layers {
+  min-width: 0;
+  max-height: var(--selection-col-max);
+  overflow: auto;
+  scrollbar-color: #42526a #0b111c;
+  scrollbar-width: thin;
+}
+
+/* Columns start level with each other: the leading margin these carry for the
+   old stacked layout would push them below the field list. */
+.selection-col-main > :first-child,
+.selection-col-layers > :first-child {
+  margin-top: 0;
+}
+
+.selection-empty {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.selection-loading {
+  margin: 10px 0 0;
+  font-size: 11px;
+}
+
+.selection-title {
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #26364c;
+}
+
+.selection-title strong {
+  display: block;
+  font-size: 13px;
+}
+
+.selection-title span {
+  color: #8b99ab;
+  font-size: 10px;
+}
+
+.selection-actions {
+  margin: 8px 0;
+}
+
+.selection-fields {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 5px 10px;
+  font-size: 11px;
+}
+
+.selection-fields dt {
+  color: #8b9aae;
+}
+
+.selection-fields dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: #d1dae4;
+}
+
+.selection-fields .family-swatch {
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+  border-radius: 3px;
+  vertical-align: -1px;
+}
+
+.status-value.is-success {
+  color: #4ade80;
+}
+
+.status-value.is-error {
+  color: var(--danger);
+}
+
+.selection-detail {
+  margin: 10px 0 0;
+  padding: 9px;
+  max-height: 260px;
+  overflow: auto;
+  border: 1px solid #26364c;
+  border-radius: 5px;
+  background: #07101b;
+  color: #c5cfda;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font: 11px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+  scrollbar-color: #42526a #07101b;
+  scrollbar-width: thin;
+}
+
+/* --- Selection detail sections (Content / Normalized / Source records) - */
+
+.selection-section {
+  margin-top: 10px;
+  border: 1px solid #26364c;
+  border-radius: 5px;
+  background: #0c1622;
+}
+
+.selection-section > summary {
+  padding: 7px 9px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-strong);
+}
+
+.selection-section > summary:hover {
+  color: var(--accent);
+}
+
+.selection-section[open] > summary {
+  border-bottom: 1px solid #26364c;
+}
+
+.selection-section-body {
+  padding: 0 9px 9px;
+}
+
+.section-hint {
+  margin: 8px 0 0;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.selection-subsection {
+  margin-top: 8px;
+}
+
+.selection-subsection > summary {
+  cursor: pointer;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.selection-subsection > summary:hover {
+  color: var(--accent);
+}
+
+.truncation-note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.truncation-note .btn,
+.copy-btn {
+  font-size: 9px;
+}
+
+.copy-btn {
+  margin-top: 8px;
+}
+
+.raw-record {
+  margin-top: 8px;
+}
+
+.raw-record-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.raw-record-head + .preview-block .selection-detail {
+  margin-top: 5px;
+}
+
+.record-badge {
+  padding: 2px 6px;
+  border: 1px solid #26364c;
+  border-radius: 4px;
+  background: #16283c;
+  color: #9fb3c8;
+  font: 9px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.record-badge.subtype {
+  color: var(--accent);
+}
+
+.record-meta {
+  color: var(--muted);
+  font-size: 9px;
+}
+
+/* --- Type-aware insight blocks (Content layer) ------------------------- */
+
+/* Canonical sections: What / Where / Input / Result / Status / Timing.
+   Every step type renders the same skeleton, so the layout is learned once. */
+.insight-section {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid #1b2738;
+}
+
+.insight-section:first-of-type {
+  margin-top: 4px;
+  padding-top: 0;
+  border-top: none;
+}
+
+.insight-section-title {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: #6b7a8d;
+}
+
+.insight-section.role-where .path-name {
+  color: var(--accent);
+}
+
+.insight-value {
+  font-size: 11px;
+  color: var(--text-soft);
+  overflow-wrap: anywhere;
+}
+
+/* Header of the Content layer: coverage counter and the generic-view note. */
+.insight-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.insight-coverage,
+.insight-generic {
+  font-size: 9px;
+  color: var(--muted);
+}
+
+.insight-generic {
+  margin-right: auto;
+  padding: 2px 7px;
+  border: 1px dashed #2f3f57;
+  border-radius: 9px;
+}
+
+/* A value that is absent is a visible, explained state — never a blank. */
+.slot-missing-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.slot-missing {
+  padding: 1px 7px;
+  border: 1px dashed #2c3a4f;
+  border-radius: 9px;
+  color: #6b7a8d;
+  font-size: 9px;
+  cursor: help;
+}
+
+.slot-missing-label {
+  margin-right: 5px;
+  color: #8493a6;
+}
+
+.slot-missing.is-unreadable {
+  border-color: #5b2733;
+  color: var(--danger);
+}
+
+.insight-unmapped {
+  margin-top: 12px;
+}
+
+.insight-unmapped > summary {
+  color: var(--muted);
+  font-size: 10px;
+  cursor: pointer;
+}
+
+/* Search results and plan steps */
+.insight-results {
+  display: grid;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.insight-result {
+  display: grid;
+  gap: 2px;
+  padding: 7px 9px;
+  border: 1px solid #26364c;
+  border-radius: 5px;
+  background: #0b1520;
+  font-size: 11px;
+}
+
+.result-domain {
+  color: var(--accent);
+  font-size: 10px;
+}
+
+.result-url,
+.result-snippet {
+  color: var(--muted);
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
+
+.insight-steps {
+  margin: 4px 0 0;
+  padding-left: 18px;
+  font-size: 11px;
+}
+
+.insight-step {
+  margin-top: 4px;
+}
+
+.insight-step .insight-badge {
+  margin-right: 6px;
+}
+
+.insight-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.insight-image {
+  margin: 0;
+  padding: 6px;
+  border: 1px solid #26364c;
+  border-radius: 5px;
+  background: #0b1520;
+}
+
+.insight-image img {
+  display: block;
+  max-width: 260px;
+  max-height: 200px;
+  border-radius: 3px;
+}
+
+.insight-image figcaption {
+  margin-top: 4px;
+  font-size: 9px;
+  overflow-wrap: anywhere;
+}
+
+.insight-kv {
+  margin: 8px 0 0;
+}
+
+.insight-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.insight-badge {
+  padding: 2px 8px;
+  border: 1px solid #26364c;
+  border-radius: 10px;
+  background: #16283c;
+  color: #c7d2df;
+  font-size: 10px;
+}
+
+.insight-badge.ok {
+  color: #4ade80;
+  border-color: #254d33;
+}
+
+.insight-badge.bad {
+  color: var(--danger);
+  border-color: #5b2733;
+}
+
+.insight-badge.tool {
+  color: var(--accent);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.insight-code {
+  border-left: 2px solid var(--accent);
+}
+
+.insight-diff .diff-add {
+  color: #4ade80;
+}
+
+.insight-diff .diff-del {
+  color: var(--danger);
+}
+
+.insight-diff .diff-meta {
+  color: var(--muted);
+}
+
+.insight-output-label {
+  margin-top: 8px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--muted);
+}
+
+.insight-output-label + .preview-block .selection-detail {
+  margin-top: 4px;
+}
+
+.insight-segment {
+  margin-top: 10px;
+}
+
+.insight-segment > .insight-output-label {
+  margin: 0 0 4px;
+}
+
+.insight-segment .selection-detail,
+.insight-segment .insight-badges,
+.insight-segment .selection-fields {
+  margin-top: 0;
+}
+
+.insight-pathsplit {
+  overflow-wrap: anywhere;
+  font: 10px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.path-dir {
+  color: var(--muted);
+}
+
+.path-name {
+  color: var(--text-strong);
+}
+
+.insight-file {
+  margin-top: 10px;
+  padding: 9px;
+  border: 1px solid #26364c;
+  border-radius: 5px;
+  background: #0b1520;
+}
+
+.insight-file > .insight-segment:first-child {
+  margin-top: 0;
+}
+
+.resource-row {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  width: 100%;
+  margin-top: 4px;
+  padding: 5px 8px;
+  border: 1px solid #26364c;
+  border-radius: 5px;
+  background: #101b29;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.resource-row:hover {
+  border-color: #607089;
+}
+
+.resource-verb {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.step-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+.step-nav-btn {
+  font-size: 9px;
+}
+
+.relation-groups {
+  display: grid;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.relation-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+}
+
+.relation-verb {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--muted);
+}
+
+.insight-tokens {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.token-stat {
+  display: grid;
+  gap: 2px;
+  padding: 6px 8px;
+  border: 1px solid #26364c;
+  border-radius: 5px;
+  background: #0b1520;
+}
+
+.token-stat span {
+  font-size: 9px;
+  color: var(--muted);
+}
+
+.token-stat strong {
+  font-size: 12px;
+  color: var(--text-strong);
+}
+
+.selection-list {
+  display: grid;
+  gap: 4px;
+  max-height: 360px;
+  overflow: auto;
+}
+
+.selection-item {
+  width: 100%;
+  padding: 7px 8px;
+  display: grid;
+  grid-template-columns: 35px minmax(0, 1fr);
+  gap: 7px;
+  border: 1px solid #26364c;
+  border-radius: 5px;
+  background: #101b29;
+  color: #dce5ed;
+  text-align: left;
+  cursor: pointer;
+}
+
+.selection-item:hover {
+  border-color: #607089;
+}
+
+.selection-item span {
+  color: #77869a;
+  font: 9px/1.35 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.selection-item strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 10px;
+}
+
+.relation-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 9px;
+}
+
+.relation-list .btn {
+  max-width: 100%;
+  justify-content: flex-start;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 9px;
+}
+
+/* --- Section headings with help popovers ------------------------------ */
+
+.panel-heading {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.panel-heading h2 {
+  margin: 0;
+}
+
+/* --- Responsive ------------------------------------------------------- */
+
+@media (max-width: 1180px) {
+  .observatory-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .side-column {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* Too narrow for side-by-side details: the band stacks and each part keeps
+     its own scroll. */
+  .selection-box.is-detail,
+  .selection-box.is-group {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-stage,
+  body:has(.selection-box.is-detail) .chart-stage,
+  body:has(.selection-box.is-group) .chart-stage {
+    max-height: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .session-picker {
+    align-items: stretch;
+  }
+
+  .view-tab {
+    padding: 8px 10px;
+  }
+
+  .chart-controls {
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .control-field {
+    width: 100%;
+  }
+
+  .control-field select,
+  .segmented {
+    flex: 1;
+  }
+
+  .segmented button {
+    flex: 1;
+  }
+
+  .chart-summary {
+    width: 100%;
+    margin-left: 0;
+    justify-content: space-between;
+  }
+
+  .chart-stage {
+    min-height: 300px;
+    padding: 9px;
+  }
+
+  .side-column {
+    grid-template-columns: 1fr;
+  }
+
+  .turn-heading {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .turn-counts {
+    grid-column: 2;
+  }
+
+  .metric-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

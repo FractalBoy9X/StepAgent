@@ -1,0 +1,20 @@
+[project]
+name = "stepagent"
+version = "4.0.0"
+description = "Local observability for Codex agent sessions"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+dependencies = [
+    "Django>=4.2,<6.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
+# The repository is a Django project, not an installable library: uv manages the
+# environment but never builds or installs the tree itself.
+[tool.uv]
+package = false

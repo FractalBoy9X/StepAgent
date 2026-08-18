@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Sessions - StepAgent" %}{% endblock %}
+{% block content %}
+<div class="grid" style="grid-template-columns:minmax(0,1fr) 340px;align-items:start">
+  <section class="card card-pad">
+    <h1 style="margin-top:0">{% translate "Agent runtime observability" %}</h1>
+    <p class="muted">{% translate "The application preserves Codex rollout records, aggregates interaction lifecycles, and reconstructs an explicit execution graph." %}</p>
+    {% if sessions %}
+    <table><thead><tr><th>{% translate "Session" %}</th><th>{% translate "Created" %}</th><th>{% translate "Size" %}</th><th>{% translate "Status" %}</th><th></th></tr></thead><tbody>
+      {% for item in sessions %}<tr><td><div class="session-label">{{ item.label }}</div><div class="muted session-path">{{ item.filename }}</div></td><td>{{ item.started_display|default:"—" }}</td><td>{{ item.size_display|default:"—" }}</td><td>{% if item.status == 'current' %}<span class="badge badge-ok">{{ item.status_label }}</span>{% else %}<a href="/logs/"><span class="badge badge-{{ item.status_tone }}">{{ item.status_label }}</span></a>{% endif %}</td><td><a class="btn btn-primary" href="/visualization/?file={{ item.filename|urlencode }}">{% translate "Open" %}</a></td></tr>{% endfor %}
+    </tbody></table>
+    {% else %}<div class="flash info">{% blocktranslate %}No imported sessions yet. Open <a href="/logs/">Import logs</a>.{% endblocktranslate %}</div>{% endif %}
+  </section>
+  <aside class="card card-pad"><h2 style="margin-top:0">{% translate "Session timelines" %}</h2><p class="muted">{% translate "Turn Lanes preserve every parser interaction in step order. Activity Matrix compares family activity across turns without stacking markers." %}</p></aside>
+</div>
+{% endblock %}

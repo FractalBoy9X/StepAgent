@@ -1,0 +1,1238 @@
+{
+  "schema_version": 4,
+  "meta": {
+    "session_id": "demo-session",
+    "label": "Codex session 2026-08-07T00:00:00Z",
+    "source": "codex_cli",
+    "description": "",
+    "generated_at": "2026-08-07T00:00:00Z",
+    "agent": {
+      "type": "codex",
+      "model": "gpt-demo",
+      "version": "demo",
+      "provider": "openai"
+    },
+    "cwd": "/workspace/demo",
+    "unknown_types": []
+  },
+  "raw_records": [
+    {
+      "raw_id": "raw:0:4113d48593e7",
+      "index": 0,
+      "ordinal": null,
+      "timestamp": "2026-08-07T00:00:00Z",
+      "rollout_type": "session_meta",
+      "response_item_type": "",
+      "event_type": "",
+      "record": {
+        "type": "session_meta",
+        "timestamp": "2026-08-07T00:00:00Z",
+        "payload": {
+          "id": "demo-session",
+          "timestamp": "2026-08-07T00:00:00Z",
+          "cwd": "/workspace/demo",
+          "originator": "codex_cli",
+          "cli_version": "demo",
+          "model_provider": "openai"
+        }
+      }
+    },
+    {
+      "raw_id": "raw:1:59258292daee",
+      "index": 1,
+      "ordinal": null,
+      "timestamp": "2026-08-07T00:00:00Z",
+      "rollout_type": "turn_context",
+      "response_item_type": "",
+      "event_type": "",
+      "record": {
+        "type": "turn_context",
+        "timestamp": "2026-08-07T00:00:00Z",
+        "payload": {
+          "turn_id": "turn-1",
+          "model": "gpt-demo"
+        }
+      }
+    },
+    {
+      "raw_id": "raw:2:697bc25853b4",
+      "index": 2,
+      "ordinal": null,
+      "timestamp": "2026-08-07T00:00:01Z",
+      "rollout_type": "event_msg",
+      "response_item_type": "",
+      "event_type": "task_started",
+      "record": {
+        "type": "event_msg",
+        "timestamp": "2026-08-07T00:00:01Z",
+        "payload": {
+          "type": "task_started",
+          "turn_id": "turn-1"
+        }
+      }
+    },
+    {
+      "raw_id": "raw:3:dd914fa6d0f5",
+      "index": 3,
+      "ordinal": null,
+      "timestamp": "2026-08-07T00:00:02Z",
+      "rollout_type": "event_msg",
+      "response_item_type": "",
+      "event_type": "user_message",
+      "record": {
+        "type": "event_msg",
+        "timestamp": "2026-08-07T00:00:02Z",
+        "payload": {
+          "type": "user_message",
+          "message": "Inspect the parser, patch the bug, and run tests."
+        }
+      }
+    },
+    {
+      "raw_id": "raw:4:5cabd19e969f",
+      "index": 4,
+      "ordinal": null,
+      "timestamp": "2026-08-07T00:00:03Z",
+      "rollout_type": "response_item",
+      "response_item_type": "reasoning",
+      "event_type": "",
+      "record": {
+        "type": "response_item",
+        "timestamp": "2026-08-07T00:00:03Z",
+        "payload": {
+          "type": "reasoning",
+          "summary": [
+            {
+              "text": "I need to inspect the parser before changing it."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "raw_id": "raw:5:efea90bfb108",
+      "index": 5,
+      "ordinal": null,
+      "timestamp": "2026-08-07T00:00:04Z",
+      "rollout_type": "response_item",
+      "response_item_type": "function_call",
+      "event_type": "",
+      "record": {
+        "type": "response_item",
+        "timestamp": "2026-08-07T00:00:04Z",
+        "payload": {
+          "type": "function_call",
+          "name": "shell",
+          "call_id": "read-1",
+          "arguments": "{\"command\": \"sed -n '1,220p' /workspace/demo/parser.py\"}"
+        }
+      }
+    },
+    {
+      "raw_id": "raw:6:3dba4bca1338",
+      "index": 6,
+      "ordinal": null,
+      "timestamp": "2026-08-07T00:00:05Z",
+      "rollout_type": "response_item",
+      "response_item_type": "function_call_output",
+      "event_type": "",
+      "record": {
+        "type": "response_item",
+        "timestamp": "2026-08-07T00:00:05Z",
+        "payload": {
+          "type": "function_call_output",
+          "call_id": "read-1",
+          "output": "def parse(value):\n    return value[0]",
+          "exit_code": 0
+        }
+      }
+    },
+    {
+      "raw_id": "raw:7:27461044dc71",
+      "index": 7,
+      "ordinal": null,
+      "timestamp": "2026-08-07T00:00:06Z",
+      "rollout_type": "response_item",
+      "response_item_type": "reasoning",
+      "event_type": "",
+      "record": {
+        "type": "response_item",
+        "timestamp": "2026-08-07T00:00:06Z",
+        "payload": {
+          "type": "reasoning",
+          "summary": [
+            {
+              "text": "The parser crashes for empty values; add a guard."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "raw_id": "raw:8:74698832c82c",
+      "index": 8,
+      "ordinal": null,
+      "timestamp": "2026-08-07T00:00:07Z",
+      "rollout_type": "response_item",
+      "response_item_type": "function_call",
+      "event_type": "",
+      "record": {
+        "type": "response_item",
+        "timestamp": "2026-08-07T00:00:07Z",
+        "payload": {
+          "type": "function_call",
+          "name": "apply_patch",
+          "call_id": "patch-1",
+          "input": "*** Begin Patch\n*** Update File: /workspace/demo/parser.py\n@@\n def parse(value):\n+    if not value:\n+        return None\n     return value[0]\n*** End Patch"
+        }
+      }
+    },
+    {
+      "raw_id": "raw:9:562431c21741",
+      "index": 9,
+      "ordinal": null,
+      "timestamp": "2026-08-07T00:00:08Z",
+      "rollout_type": "response_item",
+      "response_item_type": "function_call_output",
+      "event_type": "",
+      "record": {
+        "type": "response_item",
+        "timestamp": "2026-08-07T00:00:08Z",
+        "payload": {
+          "type": "function_call_output",
+          "call_id": "patch-1",
+          "output": "Done!",
+          "exit_code": 0
+        }
+      }
+    },
+    {
+      "raw_id": "raw:10:2838fb7bc22a",
+      "index": 10,
+      "ordinal": null,
+      "timestamp": "2026-08-07T00:00:09Z",
+      "rollout_type": "response_item",
+      "response_item_type": "function_call",
+      "event_type": "",
+      "record": {
+        "type": "response_item",
+        "timestamp": "2026-08-07T00:00:09Z",
+        "payload": {
+          "type": "function_call",
+          "name": "shell",
+          "call_id": "test-1",
+          "arguments": "{\"command\": \"pytest -q /workspace/demo/tests/test_parser.py\"}"
+        }
+      }
+    },
+    {
+      "raw_id": "raw:11:96a9a4196fd9",
+      "index": 11,
+      "ordinal": null,
+      "timestamp": "2026-08-07T00:00:10Z",
+      "rollout_type": "response_item",
+      "response_item_type": "function_call_output",
+      "event_type": "",
+      "record": {
+        "type": "response_item",
+        "timestamp": "2026-08-07T00:00:10Z",
+        "payload": {
+          "type": "function_call_output",
+          "call_id": "test-1",
+          "output": "FAILED test_empty - AssertionError",
+          "exit_code": 1
+        }
+      }
+    },
+    {
+      "raw_id": "raw:12:f69ee63d0b00",
+      "index": 12,
+      "ordinal": null,
+      "timestamp": "2026-08-07T00:00:11Z",
+      "rollout_type": "response_item",
+      "response_item_type": "reasoning",
+      "event_type": "",
+      "record": {
+        "type": "response_item",
+        "timestamp": "2026-08-07T00:00:11Z",
+        "payload": {
+          "type": "reasoning",
+          "summary": [
+            {
+              "text": "The expected empty value is an empty string, not None."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "raw_id": "raw:13:63047a4a795b",
+      "index": 13,
+      "ordinal": null,
+      "timestamp": "2026-08-07T00:00:12Z",
+      "rollout_type": "response_item",
+      "response_item_type": "function_call",
+      "event_type": "",
+      "record": {
+        "type": "response_item",
+        "timestamp": "2026-08-07T00:00:12Z",
+        "payload": {
+          "type": "function_call",
+          "name": "apply_patch",
+          "call_id": "patch-2",
+          "input": "*** Begin Patch\n*** Update File: /workspace/demo/parser.py\n@@\n-        return None\n+        return ''\n*** End Patch"
+        }
+      }
+    },
+    {
+      "raw_id": "raw:14:cbd1b4efea29",
+      "index": 14,
+      "ordinal": null,
+      "timestamp": "2026-08-07T00:00:13Z",
+      "rollout_type": "response_item",
+      "response_item_type": "function_call_output",
+      "event_type": "",
+      "record": {
+        "type": "response_item",
+        "timestamp": "2026-08-07T00:00:13Z",
+        "payload": {
+          "type": "function_call_output",
+          "call_id": "patch-2",
+          "output": "Done!",
+          "exit_code": 0
+        }
+      }
+    },
+    {
+      "raw_id": "raw:15:569f75657a24",
+      "index": 15,
+      "ordinal": null,
+      "timestamp": "2026-08-07T00:00:14Z",
+      "rollout_type": "response_item",
+      "response_item_type": "function_call",
+      "event_type": "",
+      "record": {
+        "type": "response_item",
+        "timestamp": "2026-08-07T00:00:14Z",
+        "payload": {
+          "type": "function_call",
+          "name": "shell",
+          "call_id": "test-2",
+          "arguments": "{\"command\": \"pytest -q /workspace/demo/tests/test_parser.py\"}"
+        }
+      }
+    },
+    {
+      "raw_id": "raw:16:79dff68f5985",
+      "index": 16,
+      "ordinal": null,
+      "timestamp": "2026-08-07T00:00:15Z",
+      "rollout_type": "response_item",
+      "response_item_type": "function_call_output",
+      "event_type": "",
+      "record": {
+        "type": "response_item",
+        "timestamp": "2026-08-07T00:00:15Z",
+        "payload": {
+          "type": "function_call_output",
+          "call_id": "test-2",
+          "output": "2 passed in 0.05s",
+          "exit_code": 0
+        }
+      }
+    },
+    {
+      "raw_id": "raw:17:1fb2a16a9dcb",
+      "index": 17,
+      "ordinal": null,
+      "timestamp": "2026-08-07T00:00:16Z",
+      "rollout_type": "event_msg",
+      "response_item_type": "",
+      "event_type": "agent_message",
+      "record": {
+        "type": "event_msg",
+        "timestamp": "2026-08-07T00:00:16Z",
+        "payload": {
+          "type": "agent_message",
+          "message": "The parser now handles empty input and the tests pass."
+        }
+      }
+    },
+    {
+      "raw_id": "raw:18:c21c56c78afa",
+      "index": 18,
+      "ordinal": null,
+      "timestamp": "2026-08-07T00:01:00Z",
+      "rollout_type": "event_msg",
+      "response_item_type": "",
+      "event_type": "task_started",
+      "record": {
+        "type": "event_msg",
+        "timestamp": "2026-08-07T00:01:00Z",
+        "payload": {
+          "type": "task_started",
+          "turn_id": "turn-2"
+        }
+      }
+    },
+    {
+      "raw_id": "raw:19:797ea937bc20",
+      "index": 19,
+      "ordinal": null,
+      "timestamp": "2026-08-07T00:01:01Z",
+      "rollout_type": "event_msg",
+      "response_item_type": "",
+      "event_type": "user_message",
+      "record": {
+        "type": "event_msg",
+        "timestamp": "2026-08-07T00:01:01Z",
+        "payload": {
+          "type": "user_message",
+          "message": "Show which files were changed."
+        }
+      }
+    },
+    {
+      "raw_id": "raw:20:c080215e193e",
+      "index": 20,
+      "ordinal": null,
+      "timestamp": "2026-08-07T00:01:02Z",
+      "rollout_type": "response_item",
+      "response_item_type": "reasoning",
+      "event_type": "",
+      "record": {
+        "type": "response_item",
+        "timestamp": "2026-08-07T00:01:02Z",
+        "payload": {
+          "type": "reasoning",
+          "summary": [
+            {
+              "text": "I should inspect the repository status."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "raw_id": "raw:21:fa5e28ae5fbb",
+      "index": 21,
+      "ordinal": null,
+      "timestamp": "2026-08-07T00:01:03Z",
+      "rollout_type": "response_item",
+      "response_item_type": "function_call",
+      "event_type": "",
+      "record": {
+        "type": "response_item",
+        "timestamp": "2026-08-07T00:01:03Z",
+        "payload": {
+          "type": "function_call",
+          "name": "shell",
+          "call_id": "status-1",
+          "arguments": "{\"command\": \"git -C /workspace/demo status --short\"}"
+        }
+      }
+    },
+    {
+      "raw_id": "raw:22:02cb62228ff8",
+      "index": 22,
+      "ordinal": null,
+      "timestamp": "2026-08-07T00:01:04Z",
+      "rollout_type": "response_item",
+      "response_item_type": "function_call_output",
+      "event_type": "",
+      "record": {
+        "type": "response_item",
+        "timestamp": "2026-08-07T00:01:04Z",
+        "payload": {
+          "type": "function_call_output",
+          "call_id": "status-1",
+          "output": " M parser.py",
+          "exit_code": 0
+        }
+      }
+    },
+    {
+      "raw_id": "raw:23:b2f19a1e3eb2",
+      "index": 23,
+      "ordinal": null,
+      "timestamp": "2026-08-07T00:01:05Z",
+      "rollout_type": "event_msg",
+      "response_item_type": "",
+      "event_type": "agent_message",
+      "record": {
+        "type": "event_msg",
+        "timestamp": "2026-08-07T00:01:05Z",
+        "payload": {
+          "type": "agent_message",
+          "message": "Only parser.py was changed."
+        }
+      }
+    }
+  ],
+  "interactions": [
+    {
+      "interaction_id": "interaction:0:f4863ce17fb7",
+      "index": 0,
+      "turn_id": "turn-1",
+      "turn_number": 1,
+      "family": "lifecycle_observability",
+      "kind": "lifecycle",
+      "subkind": "session_meta",
+      "lifecycle": "completed",
+      "status": "success",
+      "role": "",
+      "actor_id": "primary",
+      "target_id": "",
+      "label": "Session Meta: {\"id\": \"demo-session\", \"timestamp\": \"2026-08-07T00:00:00Z\", \"cwd\": \"/workspace/demo\", \"originator\": \"codex_cli\", \"cli_version\": \"demo\", \"model_provid...",
+      "detail": "{\"id\": \"demo-session\", \"timestamp\": \"2026-08-07T00:00:00Z\", \"cwd\": \"/workspace/demo\", \"originator\": \"codex_cli\", \"cli_version\": \"demo\", \"model_provider\": \"openai\"}",
+      "call_id": "",
+      "item_id": "demo-session",
+      "parent_id": "",
+      "timestamp": "2026-08-07T00:00:00Z",
+      "timestamp_ms": 1786060800000,
+      "started_at": "2026-08-07T00:00:00Z",
+      "started_at_ms": 1786060800000,
+      "completed_at": "",
+      "completed_at_ms": null,
+      "duration_ms": null,
+      "result": {},
+      "metadata": {
+        "tool_name": "",
+        "raw_types": [
+          "session_meta:"
+        ],
+        "source_indices": [
+          0
+        ]
+      },
+      "raw_record_ids": [
+        "raw:0:4113d48593e7"
+      ]
+    },
+    {
+      "interaction_id": "interaction:1:9219412fedab",
+      "index": 1,
+      "turn_id": "turn-1",
+      "turn_number": 1,
+      "family": "context_state",
+      "kind": "environment",
+      "subkind": "turn_context",
+      "lifecycle": "completed",
+      "status": "success",
+      "role": "",
+      "actor_id": "primary",
+      "target_id": "",
+      "label": "Turn Context: {\"turn_id\": \"turn-1\", \"model\": \"gpt-demo\"}",
+      "detail": "{\"turn_id\": \"turn-1\", \"model\": \"gpt-demo\"}",
+      "call_id": "",
+      "item_id": "",
+      "parent_id": "",
+      "timestamp": "2026-08-07T00:00:00Z",
+      "timestamp_ms": 1786060800000,
+      "started_at": "2026-08-07T00:00:00Z",
+      "started_at_ms": 1786060800000,
+      "completed_at": "",
+      "completed_at_ms": null,
+      "duration_ms": null,
+      "result": {},
+      "metadata": {
+        "tool_name": "",
+        "raw_types": [
+          "turn_context:"
+        ],
+        "source_indices": [
+          1
+        ],
+        "context": {
+          "turn_id": "turn-1",
+          "model": "gpt-demo"
+        }
+      },
+      "raw_record_ids": [
+        "raw:1:59258292daee"
+      ]
+    },
+    {
+      "interaction_id": "interaction:2:098099c0d117",
+      "index": 2,
+      "turn_id": "turn-1",
+      "turn_number": 1,
+      "family": "lifecycle_observability",
+      "kind": "lifecycle",
+      "subkind": "task_started",
+      "lifecycle": "started",
+      "status": "unknown",
+      "role": "",
+      "actor_id": "primary",
+      "target_id": "",
+      "label": "Task Started: {\"type\": \"task_started\", \"turn_id\": \"turn-1\"}",
+      "detail": "{\"type\": \"task_started\", \"turn_id\": \"turn-1\"}",
+      "call_id": "",
+      "item_id": "",
+      "parent_id": "",
+      "timestamp": "2026-08-07T00:00:01Z",
+      "timestamp_ms": 1786060801000,
+      "started_at": "2026-08-07T00:00:01Z",
+      "started_at_ms": 1786060801000,
+      "completed_at": "",
+      "completed_at_ms": null,
+      "duration_ms": null,
+      "result": {},
+      "metadata": {
+        "tool_name": "",
+        "raw_types": [
+          "event_msg:task_started"
+        ],
+        "source_indices": [
+          2
+        ]
+      },
+      "raw_record_ids": [
+        "raw:2:697bc25853b4"
+      ]
+    },
+    {
+      "interaction_id": "interaction:3:2e49bbae8d53",
+      "index": 3,
+      "turn_id": "turn-1",
+      "turn_number": 1,
+      "family": "communication",
+      "kind": "message",
+      "subkind": "user_message",
+      "lifecycle": "completed",
+      "status": "success",
+      "role": "",
+      "actor_id": "primary",
+      "target_id": "",
+      "label": "User Message: Inspect the parser, patch the bug, and run tests.",
+      "detail": "Inspect the parser, patch the bug, and run tests.",
+      "call_id": "",
+      "item_id": "",
+      "parent_id": "",
+      "timestamp": "2026-08-07T00:00:02Z",
+      "timestamp_ms": 1786060802000,
+      "started_at": "2026-08-07T00:00:02Z",
+      "started_at_ms": 1786060802000,
+      "completed_at": "",
+      "completed_at_ms": null,
+      "duration_ms": null,
+      "result": {},
+      "metadata": {
+        "content_types": [],
+        "tool_name": "",
+        "raw_types": [
+          "event_msg:user_message"
+        ],
+        "source_indices": [
+          3
+        ]
+      },
+      "raw_record_ids": [
+        "raw:3:dd914fa6d0f5"
+      ]
+    },
+    {
+      "interaction_id": "interaction:4:5da7bbd95789",
+      "index": 4,
+      "turn_id": "turn-1",
+      "turn_number": 1,
+      "family": "cognition",
+      "kind": "reasoning",
+      "subkind": "reasoning",
+      "lifecycle": "completed",
+      "status": "success",
+      "role": "assistant",
+      "actor_id": "primary",
+      "target_id": "",
+      "label": "Reasoning: I need to inspect the parser before changing it.",
+      "detail": "I need to inspect the parser before changing it.",
+      "call_id": "",
+      "item_id": "",
+      "parent_id": "",
+      "timestamp": "2026-08-07T00:00:03Z",
+      "timestamp_ms": 1786060803000,
+      "started_at": "2026-08-07T00:00:03Z",
+      "started_at_ms": 1786060803000,
+      "completed_at": "",
+      "completed_at_ms": null,
+      "duration_ms": null,
+      "result": {},
+      "metadata": {
+        "tool_name": "",
+        "raw_types": [
+          "response_item:reasoning"
+        ],
+        "source_indices": [
+          4
+        ]
+      },
+      "raw_record_ids": [
+        "raw:4:5cabd19e969f"
+      ]
+    },
+    {
+      "interaction_id": "interaction:5:11ab7606a438",
+      "index": 5,
+      "turn_id": "turn-1",
+      "turn_number": 1,
+      "family": "tooling",
+      "kind": "tool_call",
+      "subkind": "function_call",
+      "lifecycle": "completed",
+      "status": "success",
+      "role": "",
+      "actor_id": "primary",
+      "target_id": "",
+      "label": "Function Call: {\"command\": \"sed -n '1,220p' /workspace/demo/parser.py\"}",
+      "detail": "{\"command\": \"sed -n '1,220p' /workspace/demo/parser.py\"}",
+      "call_id": "read-1",
+      "item_id": "",
+      "parent_id": "",
+      "timestamp": "2026-08-07T00:00:04Z",
+      "timestamp_ms": 1786060804000,
+      "started_at": "2026-08-07T00:00:04Z",
+      "started_at_ms": 1786060804000,
+      "completed_at": "",
+      "completed_at_ms": null,
+      "duration_ms": null,
+      "result": {
+        "output": "def parse(value):\n    return value[0]",
+        "exit_code": 0
+      },
+      "metadata": {
+        "arguments": {
+          "raw": ""
+        },
+        "tool_name": "shell",
+        "raw_types": [
+          "response_item:function_call",
+          "response_item:function_call_output"
+        ],
+        "source_indices": [
+          5,
+          6
+        ]
+      },
+      "raw_record_ids": [
+        "raw:5:efea90bfb108",
+        "raw:6:3dba4bca1338"
+      ]
+    },
+    {
+      "interaction_id": "interaction:7:5b3c2a0c8c26",
+      "index": 6,
+      "turn_id": "turn-1",
+      "turn_number": 1,
+      "family": "cognition",
+      "kind": "reasoning",
+      "subkind": "reasoning",
+      "lifecycle": "completed",
+      "status": "success",
+      "role": "assistant",
+      "actor_id": "primary",
+      "target_id": "",
+      "label": "Reasoning: The parser crashes for empty values; add a guard.",
+      "detail": "The parser crashes for empty values; add a guard.",
+      "call_id": "",
+      "item_id": "",
+      "parent_id": "",
+      "timestamp": "2026-08-07T00:00:06Z",
+      "timestamp_ms": 1786060806000,
+      "started_at": "2026-08-07T00:00:06Z",
+      "started_at_ms": 1786060806000,
+      "completed_at": "",
+      "completed_at_ms": null,
+      "duration_ms": null,
+      "result": {},
+      "metadata": {
+        "tool_name": "",
+        "raw_types": [
+          "response_item:reasoning"
+        ],
+        "source_indices": [
+          7
+        ]
+      },
+      "raw_record_ids": [
+        "raw:7:27461044dc71"
+      ]
+    },
+    {
+      "interaction_id": "interaction:8:6b814af945a0",
+      "index": 7,
+      "turn_id": "turn-1",
+      "turn_number": 1,
+      "family": "tooling",
+      "kind": "tool_call",
+      "subkind": "function_call",
+      "lifecycle": "completed",
+      "status": "success",
+      "role": "",
+      "actor_id": "primary",
+      "target_id": "",
+      "label": "Function Call: *** Begin Patch *** Update File: /workspace/demo/parser.py @@ def parse(value): + if not value: + return None return value[0] *** End Patch",
+      "detail": "*** Begin Patch\n*** Update File: /workspace/demo/parser.py\n@@\n def parse(value):\n+    if not value:\n+        return None\n     return value[0]\n*** End Patch",
+      "call_id": "patch-1",
+      "item_id": "",
+      "parent_id": "",
+      "timestamp": "2026-08-07T00:00:07Z",
+      "timestamp_ms": 1786060807000,
+      "started_at": "2026-08-07T00:00:07Z",
+      "started_at_ms": 1786060807000,
+      "completed_at": "",
+      "completed_at_ms": null,
+      "duration_ms": null,
+      "result": {
+        "output": "Done!",
+        "exit_code": 0
+      },
+      "metadata": {
+        "arguments": {
+          "raw": ""
+        },
+        "tool_name": "apply_patch",
+        "raw_types": [
+          "response_item:function_call",
+          "response_item:function_call_output"
+        ],
+        "source_indices": [
+          8,
+          9
+        ]
+      },
+      "raw_record_ids": [
+        "raw:8:74698832c82c",
+        "raw:9:562431c21741"
+      ]
+    },
+    {
+      "interaction_id": "interaction:10:97840ae74217",
+      "index": 8,
+      "turn_id": "turn-1",
+      "turn_number": 1,
+      "family": "tooling",
+      "kind": "tool_call",
+      "subkind": "function_call",
+      "lifecycle": "completed",
+      "status": "error",
+      "role": "",
+      "actor_id": "primary",
+      "target_id": "",
+      "label": "Function Call: {\"command\": \"pytest -q /workspace/demo/tests/test_parser.py\"}",
+      "detail": "{\"command\": \"pytest -q /workspace/demo/tests/test_parser.py\"}",
+      "call_id": "test-1",
+      "item_id": "",
+      "parent_id": "",
+      "timestamp": "2026-08-07T00:00:09Z",
+      "timestamp_ms": 1786060809000,
+      "started_at": "2026-08-07T00:00:09Z",
+      "started_at_ms": 1786060809000,
+      "completed_at": "",
+      "completed_at_ms": null,
+      "duration_ms": null,
+      "result": {
+        "output": "FAILED test_empty - AssertionError",
+        "exit_code": 1
+      },
+      "metadata": {
+        "arguments": {
+          "raw": ""
+        },
+        "tool_name": "shell",
+        "raw_types": [
+          "response_item:function_call",
+          "response_item:function_call_output"
+        ],
+        "source_indices": [
+          10,
+          11
+        ]
+      },
+      "raw_record_ids": [
+        "raw:10:2838fb7bc22a",
+        "raw:11:96a9a4196fd9"
+      ]
+    },
+    {
+      "interaction_id": "interaction:12:02d46fb99a65",
+      "index": 9,
+      "turn_id": "turn-1",
+      "turn_number": 1,
+      "family": "cognition",
+      "kind": "reasoning",
+      "subkind": "reasoning",
+      "lifecycle": "completed",
+      "status": "success",
+      "role": "assistant",
+      "actor_id": "primary",
+      "target_id": "",
+      "label": "Reasoning: The expected empty value is an empty string, not None.",
+      "detail": "The expected empty value is an empty string, not None.",
+      "call_id": "",
+      "item_id": "",
+      "parent_id": "",
+      "timestamp": "2026-08-07T00:00:11Z",
+      "timestamp_ms": 1786060811000,
+      "started_at": "2026-08-07T00:00:11Z",
+      "started_at_ms": 1786060811000,
+      "completed_at": "",
+      "completed_at_ms": null,
+      "duration_ms": null,
+      "result": {},
+      "metadata": {
+        "tool_name": "",
+        "raw_types": [
+          "response_item:reasoning"
+        ],
+        "source_indices": [
+          12
+        ]
+      },
+      "raw_record_ids": [
+        "raw:12:f69ee63d0b00"
+      ]
+    },
+    {
+      "interaction_id": "interaction:13:a811884d4ade",
+      "index": 10,
+      "turn_id": "turn-1",
+      "turn_number": 1,
+      "family": "tooling",
+      "kind": "tool_call",
+      "subkind": "function_call",
+      "lifecycle": "completed",
+      "status": "success",
+      "role": "",
+      "actor_id": "primary",
+      "target_id": "",
+      "label": "Function Call: *** Begin Patch *** Update File: /workspace/demo/parser.py @@ - return None + return '' *** End Patch",
+      "detail": "*** Begin Patch\n*** Update File: /workspace/demo/parser.py\n@@\n-        return None\n+        return ''\n*** End Patch",
+      "call_id": "patch-2",
+      "item_id": "",
+      "parent_id": "",
+      "timestamp": "2026-08-07T00:00:12Z",
+      "timestamp_ms": 1786060812000,
+      "started_at": "2026-08-07T00:00:12Z",
+      "started_at_ms": 1786060812000,
+      "completed_at": "",
+      "completed_at_ms": null,
+      "duration_ms": null,
+      "result": {
+        "output": "Done!",
+        "exit_code": 0
+      },
+      "metadata": {
+        "arguments": {
+          "raw": ""
+        },
+        "tool_name": "apply_patch",
+        "raw_types": [
+          "response_item:function_call",
+          "response_item:function_call_output"
+        ],
+        "source_indices": [
+          13,
+          14
+        ]
+      },
+      "raw_record_ids": [
+        "raw:13:63047a4a795b",
+        "raw:14:cbd1b4efea29"
+      ]
+    },
+    {
+      "interaction_id": "interaction:15:8de4319bc5ac",
+      "index": 11,
+      "turn_id": "turn-1",
+      "turn_number": 1,
+      "family": "tooling",
+      "kind": "tool_call",
+      "subkind": "function_call",
+      "lifecycle": "completed",
+      "status": "success",
+      "role": "",
+      "actor_id": "primary",
+      "target_id": "",
+      "label": "Function Call: {\"command\": \"pytest -q /workspace/demo/tests/test_parser.py\"}",
+      "detail": "{\"command\": \"pytest -q /workspace/demo/tests/test_parser.py\"}",
+      "call_id": "test-2",
+      "item_id": "",
+      "parent_id": "",
+      "timestamp": "2026-08-07T00:00:14Z",
+      "timestamp_ms": 1786060814000,
+      "started_at": "2026-08-07T00:00:14Z",
+      "started_at_ms": 1786060814000,
+      "completed_at": "",
+      "completed_at_ms": null,
+      "duration_ms": null,
+      "result": {
+        "output": "2 passed in 0.05s",
+        "exit_code": 0
+      },
+      "metadata": {
+        "arguments": {
+          "raw": ""
+        },
+        "tool_name": "shell",
+        "raw_types": [
+          "response_item:function_call",
+          "response_item:function_call_output"
+        ],
+        "source_indices": [
+          15,
+          16
+        ]
+      },
+      "raw_record_ids": [
+        "raw:15:569f75657a24",
+        "raw:16:79dff68f5985"
+      ]
+    },
+    {
+      "interaction_id": "interaction:17:b32b04ea9ad8",
+      "index": 12,
+      "turn_id": "turn-1",
+      "turn_number": 1,
+      "family": "communication",
+      "kind": "message",
+      "subkind": "agent_message",
+      "lifecycle": "completed",
+      "status": "success",
+      "role": "",
+      "actor_id": "primary",
+      "target_id": "",
+      "label": "Agent Message: The parser now handles empty input and the tests pass.",
+      "detail": "The parser now handles empty input and the tests pass.",
+      "call_id": "",
+      "item_id": "",
+      "parent_id": "",
+      "timestamp": "2026-08-07T00:00:16Z",
+      "timestamp_ms": 1786060816000,
+      "started_at": "2026-08-07T00:00:16Z",
+      "started_at_ms": 1786060816000,
+      "completed_at": "",
+      "completed_at_ms": null,
+      "duration_ms": null,
+      "result": {},
+      "metadata": {
+        "content_types": [],
+        "tool_name": "",
+        "raw_types": [
+          "event_msg:agent_message"
+        ],
+        "source_indices": [
+          17
+        ]
+      },
+      "raw_record_ids": [
+        "raw:17:1fb2a16a9dcb"
+      ]
+    },
+    {
+      "interaction_id": "interaction:18:aab75860d426",
+      "index": 13,
+      "turn_id": "turn-2",
+      "turn_number": 2,
+      "family": "lifecycle_observability",
+      "kind": "lifecycle",
+      "subkind": "task_started",
+      "lifecycle": "started",
+      "status": "unknown",
+      "role": "",
+      "actor_id": "primary",
+      "target_id": "",
+      "label": "Task Started: {\"type\": \"task_started\", \"turn_id\": \"turn-2\"}",
+      "detail": "{\"type\": \"task_started\", \"turn_id\": \"turn-2\"}",
+      "call_id": "",
+      "item_id": "",
+      "parent_id": "",
+      "timestamp": "2026-08-07T00:01:00Z",
+      "timestamp_ms": 1786060860000,
+      "started_at": "2026-08-07T00:01:00Z",
+      "started_at_ms": 1786060860000,
+      "completed_at": "",
+      "completed_at_ms": null,
+      "duration_ms": null,
+      "result": {},
+      "metadata": {
+        "tool_name": "",
+        "raw_types": [
+          "event_msg:task_started"
+        ],
+        "source_indices": [
+          18
+        ]
+      },
+      "raw_record_ids": [
+        "raw:18:c21c56c78afa"
+      ]
+    },
+    {
+      "interaction_id": "interaction:19:7bd9c2409ed9",
+      "index": 14,
+      "turn_id": "turn-2",
+      "turn_number": 2,
+      "family": "communication",
+      "kind": "message",
+      "subkind": "user_message",
+      "lifecycle": "completed",
+      "status": "success",
+      "role": "",
+      "actor_id": "primary",
+      "target_id": "",
+      "label": "User Message: Show which files were changed.",
+      "detail": "Show which files were changed.",
+      "call_id": "",
+      "item_id": "",
+      "parent_id": "",
+      "timestamp": "2026-08-07T00:01:01Z",
+      "timestamp_ms": 1786060861000,
+      "started_at": "2026-08-07T00:01:01Z",
+      "started_at_ms": 1786060861000,
+      "completed_at": "",
+      "completed_at_ms": null,
+      "duration_ms": null,
+      "result": {},
+      "metadata": {
+        "content_types": [],
+        "tool_name": "",
+        "raw_types": [
+          "event_msg:user_message"
+        ],
+        "source_indices": [
+          19
+        ]
+      },
+      "raw_record_ids": [
+        "raw:19:797ea937bc20"
+      ]
+    },
+    {
+      "interaction_id": "interaction:20:7008c6dcd0f5",
+      "index": 15,
+      "turn_id": "turn-2",
+      "turn_number": 2,
+      "family": "cognition",
+      "kind": "reasoning",
+      "subkind": "reasoning",
+      "lifecycle": "completed",
+      "status": "success",
+      "role": "assistant",
+      "actor_id": "primary",
+      "target_id": "",
+      "label": "Reasoning: I should inspect the repository status.",
+      "detail": "I should inspect the repository status.",
+      "call_id": "",
+      "item_id": "",
+      "parent_id": "",
+      "timestamp": "2026-08-07T00:01:02Z",
+      "timestamp_ms": 1786060862000,
+      "started_at": "2026-08-07T00:01:02Z",
+      "started_at_ms": 1786060862000,
+      "completed_at": "",
+      "completed_at_ms": null,
+      "duration_ms": null,
+      "result": {},
+      "metadata": {
+        "tool_name": "",
+        "raw_types": [
+          "response_item:reasoning"
+        ],
+        "source_indices": [
+          20
+        ]
+      },
+      "raw_record_ids": [
+        "raw:20:c080215e193e"
+      ]
+    },
+    {
+      "interaction_id": "interaction:21:c365e2989b5a",
+      "index": 16,
+      "turn_id": "turn-2",
+      "turn_number": 2,
+      "family": "tooling",
+      "kind": "tool_call",
+      "subkind": "function_call",
+      "lifecycle": "completed",
+      "status": "success",
+      "role": "",
+      "actor_id": "primary",
+      "target_id": "",
+      "label": "Function Call: {\"command\": \"git -C /workspace/demo status --short\"}",
+      "detail": "{\"command\": \"git -C /workspace/demo status --short\"}",
+      "call_id": "status-1",
+      "item_id": "",
+      "parent_id": "",
+      "timestamp": "2026-08-07T00:01:03Z",
+      "timestamp_ms": 1786060863000,
+      "started_at": "2026-08-07T00:01:03Z",
+      "started_at_ms": 1786060863000,
+      "completed_at": "",
+      "completed_at_ms": null,
+      "duration_ms": null,
+      "result": {
+        "output": " M parser.py",
+        "exit_code": 0
+      },
+      "metadata": {
+        "arguments": {
+          "raw": ""
+        },
+        "tool_name": "shell",
+        "raw_types": [
+          "response_item:function_call",
+          "response_item:function_call_output"
+        ],
+        "source_indices": [
+          21,
+          22
+        ]
+      },
+      "raw_record_ids": [
+        "raw:21:fa5e28ae5fbb",
+        "raw:22:02cb62228ff8"
+      ]
+    },
+    {
+      "interaction_id": "interaction:23:2436d8a088b6",
+      "index": 17,
+      "turn_id": "turn-2",
+      "turn_number": 2,
+      "family": "communication",
+      "kind": "message",
+      "subkind": "agent_message",
+      "lifecycle": "completed",
+      "status": "success",
+      "role": "",
+      "actor_id": "primary",
+      "target_id": "",
+      "label": "Agent Message: Only parser.py was changed.",
+      "detail": "Only parser.py was changed.",
+      "call_id": "",
+      "item_id": "",
+      "parent_id": "",
+      "timestamp": "2026-08-07T00:01:05Z",
+      "timestamp_ms": 1786060865000,
+      "started_at": "2026-08-07T00:01:05Z",
+      "started_at_ms": 1786060865000,
+      "completed_at": "",
+      "completed_at_ms": null,
+      "duration_ms": null,
+      "result": {},
+      "metadata": {
+        "content_types": [],
+        "tool_name": "",
+        "raw_types": [
+          "event_msg:agent_message"
+        ],
+        "source_indices": [
+          23
+        ]
+      },
+      "raw_record_ids": [
+        "raw:23:b2f19a1e3eb2"
+      ]
+    }
+  ]
+}

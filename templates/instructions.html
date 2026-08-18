@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Instructions - StepAgent" %}{% endblock %}
+{% block content %}
+<div class="grid" style="grid-template-columns:minmax(0,1fr) minmax(300px,.55fr);align-items:start">
+<section class="card card-pad">
+<h1 style="margin-top:0">{% translate "2D observatory reference" %}</h1>
+<p class="muted">{% translate "How the observatory turns raw Codex session logs into the two views, and what every label on screen means." %}</p>
+
+<h2 id="reading-guide">{% translate "How to read the views" %}</h2>
+<p>{% translate "The observatory is linear on purpose: interactions appear exactly in the order the parser found them in the log, numbered as steps. Nothing is reordered, merged away, or hidden — what you see is the session as it happened." %}</p>
+<table><tbody>
+<tr><td>{% translate "Turn Lanes" %}</td><td>{% translate "Parser interaction index" %}</td></tr>
+<tr><td>{% translate "Session matrix" %}</td><td>{% translate "Conversation turn" %}</td></tr>
+<tr><td>{% translate "Turn matrix" %}</td><td>{% translate "Consecutive step ranges" %}</td></tr>
+</tbody></table>
+<p class="muted">{% translate "Both views use the same selected interaction and detail API." %}</p>
+
+<h2 id="views">{% translate "The two views" %}</h2>
+<h3>{% translate "Turn Lanes" %}</h3>
+<p>{% translate "Each parser interaction is one numbered step. A conversation turn starts with a standalone user message. Earlier events form a separate session initialization lane." %}</p>
+<h3>{% translate "Activity Matrix" %}</h3>
+<p>{% translate "Rows represent interaction families. Columns represent conversation turns and session initialization; after selecting one segment they represent consecutive step ranges." %}</p>
+
+<h2 id="families">{% translate "Interaction families" %}</h2>
+<p>{% translate "Every interaction belongs to one of 14 thematic families. The color of a step marker, matrix row, and legend entry always identifies the family." %}</p>
+<table><thead><tr><th>{% translate "Family" %}</th><th>{% translate "What it covers" %}</th></tr></thead><tbody>
+{% for family in families %}<tr><td style="white-space:nowrap"><span class="family-swatch" style="--family-color:{{ family.color }}"></span>{{ family.name }}</td><td>{{ family.description }}</td></tr>{% endfor %}
+</tbody></table>
+
+<h2 id="kinds">{% translate "Interaction types" %}</h2>
+<p>{% translate "Within a family, the type describes what a single step actually is. The most common types:" %}</p>
+<table><tbody>
+<tr><td>{% translate "Message" %}</td><td>{% translate "One message in the conversation; the role says whether it came from you, the agent, or Codex itself." %}</td></tr>
+<tr><td>{% translate "Reasoning" %}</td><td>{% translate "A recorded piece of the model's thinking." %}</td></tr>
+<tr><td>{% translate "Command" %}</td><td>{% translate "A terminal command with its output and exit code." %}</td></tr>
+<tr><td>{% translate "Tool call" %} / {% translate "Tool result" %}</td><td>{% translate "A tool invocation and the answer it returned, linked by a shared call identifier." %}</td></tr>
+<tr><td>{% translate "File change" %}</td><td>{% translate "A patch applied to one or more files." %}</td></tr>
+<tr><td>{% translate "Plan" %} / {% translate "Plan step" %}</td><td>{% translate "The agent's working plan and its individual steps." %}</td></tr>
+<tr><td>{% translate "Approval" %} / {% translate "Permission request" %} / {% translate "User input request" %}</td><td>{% translate "The agent pauses and waits for your decision." %}</td></tr>
+<tr><td>{% translate "MCP call" %} / {% translate "MCP server" %}</td><td>{% translate "Calls to external tools connected through the Model Context Protocol." %}</td></tr>
+<tr><td>{% translate "Web action" %}</td><td>{% translate "A web search or page visit." %}</td></tr>
+<tr><td>{% translate "Compaction" %}</td><td>{% translate "Codex summarized older conversation history to fit the model's memory." %}</td></tr>
+<tr><td>{% translate "Usage" %}</td><td>{% translate "A token-usage counter update." %}</td></tr>
+<tr><td>{% translate "Error" %} / {% translate "Warning" %}</td><td>{% translate "Something went wrong, or nearly did." %}</td></tr>
+<tr><td>{% translate "Unknown event" %}</td><td>{% translate "A log entry this application does not recognize yet. It is kept in full and listed in the file's unknown_types metadata — nothing is discarded." %}</td></tr>
+</tbody></table>
+
+<h2 id="lifecycle">{% translate "Lifecycle and status" %}</h2>
+<p>{% translate "Lifecycle is the phase an interaction reached: started, streaming (arriving in pieces), waiting (for your decision), completed, failed, cancelled, or aborted. Status is the final outcome shown alongside it — most importantly success or error. Steps with errors get a red marker, and lanes containing them get a red border." %}</p>
+
+<h2 id="selection">{% translate "Details" %}</h2>
+<p>{% translate "Select a step, matrix cell, table row, or relation to inspect it. The details band above the chart lists the step's key fields on the left, and beside them three collapsible layers — the same data at three depths:" %}</p>
+<table><tbody>
+<tr><td>{% translate "Content" %}</td><td>{% translate "A decoded, human-readable view of the step, adapted to its type: commands show the command line with exit code and output, patches show a colored diff per file, tool calls show their arguments and unwrapped result, token counters show a number grid. Open by default — this answers most questions." %}</td></tr>
+<tr><td>{% translate "Normalized interaction" %}</td><td>{% translate "What the parser derived from the log: correlation identifiers, results, and metadata. Fields already listed at the top of the panel are omitted here to avoid repetition; the complete JSON is one click away under Full JSON." %}</td></tr>
+<tr><td>{% translate "Source records" %}</td><td>{% translate "The exact JSONL lines of the original log file this step was built from — one card per line, with the envelope type, subtype, position, and timestamp in the card header and the untouched record underneath." %}</td></tr>
+</tbody></table>
+<p class="muted">{% translate "The data flows one way: log lines → parser → normalized interaction → step on the chart. Long previews are cut with an explicit notice and a button that reveals everything — nothing is truncated silently. Each JSON layer has a copy button. Press Escape to clear the selection." %}</p>
+<p class="muted">{% translate "Below the step title a bar navigates to the previous and next step. Files a step touched are listed as clickable resources inside its Content layer, next to what the step did. The remaining relations are only the causal ones, grouped by verb, each pointing at a step number — turn and agent membership live in the field list instead." %}</p>
+
+<h3>{% translate "How the Content layer is built" %}</h3>
+<p>{% translate "Whatever the step type, the Content layer always uses the same sections in the same order: What, Where, Input, Result, Status, Timing, Provenance. Every value is read from the original log line first and from the parser's summary only as a fallback, so nothing depends on the shortened description." %}</p>
+<table><tbody>
+<tr><td>{% translate "not in the log" %}</td><td>{% translate "The field belongs to this step type, but Codex did not record it." %}</td></tr>
+<tr><td>{% translate "empty" %}</td><td>{% translate "The field is in the log with no value — an empty error output of a successful command, for example." %}</td></tr>
+<tr><td>{% translate "unreadable" %}</td><td>{% translate "The value is there but could not be decoded; the layers below still hold it untouched." %}</td></tr>
+</tbody></table>
+<p class="muted">{% translate "The counter in the corner — for example 8 of 9 fields — says how much of the step this view managed to fill in, and a collapsed list at the bottom names the keys of the source record that no field claimed yet: nothing is hidden silently. Step types without a dedicated layout get a generic view with the source record shown as readable JSON." %}</p>
+
+<h2 id="import">{% translate "Import" %}</h2>
+<p>{% translate "The importer accepts raw JSONL and schema v4 only. Reimport original rollout files when migrating from v3." %}</p>
+<p>{% translate "Imports are repeatable. Every processed session records the raw file it came from, so the import page marks a session as stale once its rollout changes and can refresh it in place. Sessions whose source file is gone are marked orphaned and can be removed. The Codex session directory is only ever read." %}</p>
+
+<h2 id="api">{% translate "APIs" %}</h2>
+<p>{% blocktranslate %}Two JSON endpoints back the interface: <a href="/api/graph/"><code>/api/graph/</code></a> returns the full execution graph of a session (without raw payloads), and <code>/api/interaction/?file=…&amp;id=…</code> returns one interaction together with its raw source records.{% endblocktranslate %}</p>
+</section>
+
+<aside class="card card-pad">
+<h2 style="margin-top:0">{% translate "On this page" %}</h2>
+<ul class="toc">
+<li><a href="#reading-guide">{% translate "How to read the views" %}</a></li>
+<li><a href="#views">{% translate "The two views" %}</a></li>
+<li><a href="#families">{% translate "Interaction families" %}</a></li>
+<li><a href="#kinds">{% translate "Interaction types" %}</a></li>
+<li><a href="#lifecycle">{% translate "Lifecycle and status" %}</a></li>
+<li><a href="#selection">{% translate "Details" %}</a></li>
+<li><a href="#import">{% translate "Import" %}</a></li>
+<li><a href="#api">{% translate "APIs" %}</a></li>
+</ul>
+</aside>
+</div>
+{% endblock %}

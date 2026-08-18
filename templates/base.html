@@ -1,0 +1,33 @@
+{% load i18n static %}
+{% get_current_language as CURRENT_LANGUAGE %}
+{% with active_url=request.resolver_match.url_name %}
+<!doctype html>
+<html lang="{{ CURRENT_LANGUAGE }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}StepAgent{% endblock %}</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="{% static 'visualization/stepagent-favicon.png' %}">
+  <link rel="stylesheet" href="{% static 'visualization/base.css' %}?v=9">
+  {% block head %}{% endblock %}
+</head>
+<body>
+<nav class="nav">
+  <a class="brand" href="{% url 'home' %}" aria-label="StepAgent — {% translate 'Home' %}">
+    <img class="brand-icon" src="{% static 'visualization/stepagent-icon.png' %}" alt="" width="44" height="44">
+    <span class="brand-name">StepAgent</span>
+  </a>
+  <a href="{% url 'visualization' %}" {% if active_url == 'visualization' %}aria-current="page"{% endif %}>{% translate "Observatory" %}</a>
+  <a href="{% url 'log_manager' %}" {% if active_url == 'log_manager' %}aria-current="page"{% endif %}>{% translate "Import logs" %}</a>
+  <a href="{% url 'instructions' %}" {% if active_url == 'instructions' %}aria-current="page"{% endif %}>{% translate "Instructions" %}</a>
+  <form class="language-switch" action="{% url 'set_language' %}" method="post" aria-label="{% translate 'Language' %}">
+    {% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}">
+    <button type="submit" name="language" value="pl" class="{% if CURRENT_LANGUAGE == 'pl' %}active{% endif %}" aria-pressed="{% if CURRENT_LANGUAGE == 'pl' %}true{% else %}false{% endif %}">PL</button>
+    <button type="submit" name="language" value="en" class="{% if CURRENT_LANGUAGE == 'en' %}active{% endif %}" aria-pressed="{% if CURRENT_LANGUAGE == 'en' %}true{% else %}false{% endif %}">ENG</button>
+  </form>
+</nav>
+<main class="shell">{% block content %}{% endblock %}</main>
+{% block scripts %}{% endblock %}
+</body>
+</html>
+{% endwith %}
